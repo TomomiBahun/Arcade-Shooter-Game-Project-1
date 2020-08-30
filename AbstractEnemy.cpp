@@ -42,7 +42,7 @@ bool AbstractEnemy::isInside() const
 	if (_counter < 60) {
 		return true;
 	}
-	if (_x < -_width / 2 || Define::OUTER_W + _width / 2 < _x || _y < -_height / 2 || Define::OUTER_H + _height / 2 < _y) {
+	if (_x < Define::IN_X || Define::INNER_W + _width / 2 < _x || _y < Define::IN_Y || Define::INNER_H + _height / 2 < _y) {
 		return false;
 	}
 	return true;

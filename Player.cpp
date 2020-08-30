@@ -28,6 +28,8 @@ bool Player::update()
 	_counter++;
 	move();
 	shotBullets();
+	//setToBeDeletedBullets(HitCheck::getIns()->getPlayerShotHitIndex()); // this might not be needed....
+	_playerShot.initBulletsAfterHittingEnemy(HitCheck::getIns()->getPlayerShotHitIndex());
 	_playerShot.update();
 	return true;
 }
@@ -58,6 +60,7 @@ std::vector<Bullet>& Player::getActivePlayerBullet()
 	return _activePlayerBullets;
 }
 
+/* get enemy's bullet information at Player class*/
 void Player::setActiveEnemyBullets(std::vector<Bullet>& enemyBullets)
 {
 	_activeEnemyBullets.clear(); // delete all elements in vector before updating it
@@ -129,10 +132,11 @@ void Player::shotBullets()
 	}
 }
 
+/* check if enemy's bullet hits the player*/
 bool Player::didBulletHitMe()
 {
 	for (int i = 0; i < _activeEnemyBullets.size(); i++) {
-		if (HitCheck::getIns()->didBulletHitMe(_activeEnemyBullets, i, _x, _y, _range)) {
+		if (HitCheck::getIns()->didBulletHitPlayer(_activeEnemyBullets, i, _x, _y, _range)) {
 			return true;
 		}
 	}

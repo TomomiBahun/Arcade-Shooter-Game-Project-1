@@ -160,7 +160,8 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="GreenFire.cpp" />
+    <ClCompile Include="GreenFire01.cpp" />
+    <ClCompile Include="GreenFire02.cpp" />
     <ClCompile Include="HitCheck.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageBullet.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Shot01.cpp" />
     <ClCompile Include="Shot02.cpp" />
+    <ClCompile Include="Shot03.cpp" />
     <ClCompile Include="SystemMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
@@ -190,7 +192,8 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="GreenFire.h" />
+    <ClInclude Include="GreenFire01.h" />
+    <ClInclude Include="GreenFire02.h" />
     <ClInclude Include="HitCheck.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageBullet.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Shot01.h" />
     <ClInclude Include="Shot02.h" />
+    <ClInclude Include="Shot03.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="SystemMain.h" />
     <ClInclude Include="Task.h" />

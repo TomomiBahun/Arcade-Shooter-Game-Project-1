@@ -3,18 +3,20 @@
 #include <DxLib.h>
 #include "Image.h"
 
+const float ENLARGE = 1.2; // when the enemy image shows up on the gameboard, it is enlarged 1.2 times.
+
 BlueFire::BlueFire(float x, float y) : AbstractEnemy(x,y)
 {
-	_speed = 2.0f;
+	_speed = 3.0f;
 	_angle = Define::PI / 2;
-	_range = 13.0f;
-	_health = 200;
+	_range = 13.0 * ENLARGE;
+	_health = 15;
 }
 
 bool BlueFire::update()
 {
 	_counter++;
-	if (_y < Define::CENTER_Y) {
+	if (_y < Define::CENTER_Y - 200) {
 		_x += cos(_angle) * _speed;
 		_y += sin(_angle) * _speed;
 	}

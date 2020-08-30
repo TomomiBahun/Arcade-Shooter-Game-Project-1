@@ -2,6 +2,7 @@
 #include "Error.h"
 #include <DxLib.h>
 #include "Background.h"
+#include "HitCheck.h"
 
 #define ERR(str) Error::finish(str, __FUNCTION__, __LINE__);
 
@@ -90,5 +91,5 @@ void GameScene::linkPlayerShot()
    use this to check if the enemy shot hits the player */
 void GameScene::linkEnemyShot()
 {
-	_player->setActiveEnemyBulelts(_enemyManager->getActiveEnemyBullet());
+	_player->setActiveEnemyBullets(_enemyManager->getActiveEnemyBullet());
 }

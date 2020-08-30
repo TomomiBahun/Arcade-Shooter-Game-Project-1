@@ -5,6 +5,8 @@
 #include "Bullet.h"
 #include "AbstractEnemy.h"
 #include "AbstractShot.h"
+#include <algorithm> // for copy()
+#include <iterator> // for back_inserter 
 
 
 class EnemyManager : public Task
@@ -31,6 +33,7 @@ public:
 	float angleEnemyAndPlayer(float enemyX, float enemyY) const;
 
 private:
+	int _count;
 	float _playerX, _playerY;
 	int _playerPower;
 	AbstractShot* playerShot; // testing
@@ -39,7 +42,8 @@ private:
 	std::vector<Bullet> _activePlayerBullets; // this is to check if player's shot hits enemy
 	std::vector<std::shared_ptr<AbstractEnemy>> _list;
 	std::vector<std::shared_ptr<AbstractShot>> _shotList;
+	std::vector<std::shared_ptr<AbstractShot>> _continueShotList; // even after enemy dies, bullets on the board need to keep moving. 
 
 	bool didBulletHitMe(std::shared_ptr<AbstractEnemy> Enemy);
+	void loadEnemyAndShots();
 };
-

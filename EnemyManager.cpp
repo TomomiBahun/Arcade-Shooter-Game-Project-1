@@ -1,61 +1,60 @@
 #include "EnemyManager.h"
 #include "Define.h"
 #include "BlueFire.h"
-#include "GreenFire.h"
+#include "GreenFire01.h"
+#include "GreenFire02.h"
 #include "Shot01.h"
 #include "Shot02.h"
+#include "Shot03.h"
 #include "HitCheck.h"
 #include <DxLib.h>
 
 using namespace std;
 
 /* This class holds each enemy object in the list */
-EnemyManager::EnemyManager()
+EnemyManager::EnemyManager() : _count(0)
 {
-	// One shot type per regular enemy. Total num of _list = Total num of _shotList
-	_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X, 100));
-	_shotList.emplace_back(make_shared<Shot01>());
-
-	//_list.emplace_back(make_shared<GreenFire>(Define::CENTER_X + 200, 100));
-	//_shotList.emplace_back(make_shared<Shot02>());
-
-	for (auto enemy : _list) {
-		enemy->initialize();
-	}
 }
 
 bool EnemyManager::update()
 {
-	// trying std::vector instead of std::list
-	/*for (auto it = _list.begin(); it != _list.end();) {
-		if ((*it)->update() == false) {
-			it = _list.erase(it);
-		}
-		else {
-			it++;
-			// shot01.setShot(); // if the enemy is still on the board
-		}
-	}*/
+	/* always update the count and and load Enemy&Shots info first*/
+	_count++;
+	loadEnemyAndShots();
+
+	/* clear playerShotHitIndex from the last frame */
+	HitCheck::getIns()->clearPlayerShotHitIndex();
 
 	/* keep updating the enemies in _list.
 	   If enemy gets out of the game board OR enemy health is 0, erase the enemy object from the _list.
 	   Also enemy will keep shooting bullets while they are inside the game board*/
+	int backwards;
 	for (int i = 0; i < _list.size(); i++) {
 		if (_list[i]->update() == false || didBulletHitMe(_list[i]) == false) {
+			backwards = _shotList.size() - i;
+			// enemy died or moved out of the game board, so keep updating the remaining bullets
+			copy(_shotList.begin()+i, _shotList.end() - backwards, back_inserter(_continueShotList)); // clone a content of the pointer (in progress)
+			//_continueShotList.push_back(_shotList[i]->clone());
 			_list.erase(_list.begin()+ i);
+			_shotList.erase(_shotList.begin() + i);
 		}
-		else {
-			//if(i <= _shotList.size() - 1) // I feel like I can organize this part more
+		else { // if the enemy is still on the game board, keep setting a bullet
 			float currentAngle = angleEnemyAndPlayer(_list[i]->getX(), _list[i]->getY());
 			_shotList[i]->setBullets(_list[i]->getX(), _list[i]->getY(), currentAngle, ENEMY_SHOT_POWER);
-			// depending on the shot type, i might want to set just coordinates.
 		}
 
 	}
-	/* keep updating the bullets inside the game board*/
+
 	for (int i = 0; i < _shotList.size(); i++) {
 		_shotList[i]->update();
 	}
+
+	/* keep updating the bullets remaining on the game board after enemy died.
+	   Even after enemy dies, bullets need to keep moving.*/
+	for (int i = 0; i < _continueShotList.size(); i++) {
+     		_continueShotList[i]->update();
+	}
+
 	return true;
 }
 
@@ -68,6 +67,7 @@ void EnemyManager::draw() const
 	for (const auto shot : _shotList) {
 		shot->draw();
 	}
+
 }
 
 /* get all of the active bullets */
@@ -81,6 +81,7 @@ std::vector<Bullet>& EnemyManager::getActiveEnemyBullet()
 			}
 		}
 	}
+
 	return _activeEnemyBullets;
 }
 
@@ -97,33 +98,90 @@ float EnemyManager::angleEnemyAndPlayer(float enemyX, float enemyY) const
 	return atan2(_playerY - enemyY, _playerX - enemyX);
 }
 
-/* return false if enemy is dead after this frame. return true if enemy is still alive.*/
+/* check if player's bullet hit enemy
+   return false if enemy is dead after this frame. return true if enemy is still alive.*/
 bool EnemyManager::didBulletHitMe(std::shared_ptr<AbstractEnemy> enemy)
 {
-	/*for (int i = 0; i < _activePlayerBullets.size(); i++) {
-		if (HitCheck::getIns()->didBulletHitMe(_activePlayerBullets, i, enemy->getX(), enemy->getY(), enemy->getRange())) {
-			enemy->updateHealth(_playerPower); // decrease enemy health
-			if (enemy->getHealth() <= 0) {
-				return false; // enemy is dead!
-			}
-		}
-	}
-	return true; // enemy is still alive*/
-
 	for (int i = 0; i < playerShot->MAX_BULLETS; i++) {
 		if (playerShot->shot[i].getFlag() > 0) {
-			if (HitCheck::getIns()->didBulletHitMe(playerShot->shot, i, enemy->getX(), enemy->getY(), enemy->getRange(), 1)) {
+			if (HitCheck::getIns()->didBulletHitEnemy(playerShot->shot, i, enemy->getX(), enemy->getY(), enemy->getRange())) {
 				enemy->updateHealth(_playerPower); // decrease enemy health
-				playerShotIndex.push_back(i);
 				if (enemy->getHealth() <= 0) {
 					return false; // enemy is dead!
 				}
 			}
 		}
 	}
+	return true;
 }
 
+/* get player's shot from GameScene class to check if bullets hit the enemy*/
 void EnemyManager::setPlayerShot(AbstractShot& shot)
 {
 	playerShot = &shot;
+}
+
+void EnemyManager::loadEnemyAndShots()
+{
+	// One shot type per regular enemy. Total num of _list = Total num of _shotList
+	if (_count == 1) {
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+
+		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+	}
+
+	if (_count == 51) {
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+
+		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+	}
+
+	if (_count == 101) {
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+
+		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+	}
+
+	if (_count == 500) {
+		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X - 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot03>());
+
+		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X + 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot03>());
+	}
+
+	if (_count == 600) {
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 200, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+
+		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X +50, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+	}
+
+	if (_count == 651) {
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 180, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+
+		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 150, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+	}
+
+	if (_count == 701) {
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X - 50, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+
+		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot01>());
+	}
+
+	/* get width and height of enemy in enemy->initialize() */
+	for (auto enemy : _list) {
+		enemy->initialize();
+	}
 }

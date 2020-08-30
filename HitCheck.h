@@ -9,9 +9,10 @@ public:
 	HitCheck() = default;
 	virtual ~HitCheck() = default;
 
-	bool didBulletHitMe(std::vector<Bullet> shot, int n, float x, float y, float range);
-	bool didBulletHitMe(Bullet shot[], int n, float x, float y, float range, int player);
-	std::vector<int>& getPlayerShotHitIndex() { return playerShotHitIndex; }
+	bool didBulletHitPlayer(std::vector<Bullet> shot, int n, float x, float y, float range);
+	bool didBulletHitEnemy(Bullet shot[], int n, float x, float y, float range);
+	std::vector<int>& getPlayerShotHitIndex();
+	void clearPlayerShotHitIndex();
 
 private:
 	std::vector<int> playerShotHitIndex;

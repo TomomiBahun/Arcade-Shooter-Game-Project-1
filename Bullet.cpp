@@ -78,6 +78,7 @@ void Bullet::initBullet()
 	_angle = 0.0;
 	_power = 0;
 	_counter = 0;
+	_flag = 0;
 	_range = 0.0;
 }
 

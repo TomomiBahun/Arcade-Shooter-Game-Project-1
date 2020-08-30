@@ -75,9 +75,6 @@
     <ClCompile Include="AbstractEnemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GreenFire.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ImageBullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -97,6 +94,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HitCheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenFire01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GreenFire02.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shot03.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,9 +176,6 @@
     <ClInclude Include="AbstractEnemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GreenFire.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ImageBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -192,6 +195,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HitCheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenFire01.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenFire02.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shot03.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

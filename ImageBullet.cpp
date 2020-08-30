@@ -4,7 +4,8 @@
 
 #define ERR(str) Error::finish(str, __FUNCTION__, __LINE__);
 
-const float WEIGHT = 0.71f;
+const float WEIGHT = 0.60f; // make the range a bit smaller than the actual radius of the bullet
+const float ENLARGE = 1.6f; // the bullet images are enlarged when drawing them on the gameboard. Adjust range following the enlargement.
 
 // hit range (mostly the middle white part of bullets)
 // I have to change here as bullets are enlarged on the board
@@ -33,9 +34,9 @@ ImageBullet::ImageBullet()
 	myLoadDivGraph("img/shot_fuda.png");
 
 	/* store range in vector*/
-	_range.push_back(4.5f * WEIGHT); // multiply the zoom value
-	_range.push_back(10.0f * WEIGHT);
-	_range.push_back(4.5f * WEIGHT);
+	_range.push_back(4.5f * WEIGHT * ENLARGE); // small ball
+	_range.push_back(10.0f * WEIGHT * ENLARGE); // big ball
+	_range.push_back(4.5f * ENLARGE); // fuda - player's bullet
 }
 
 void ImageBullet::myLoadDivGraph(const char* fname)
