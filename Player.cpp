@@ -10,7 +10,16 @@ using namespace std;
 const static float SPEED = 6;
 
 /* set the initial location (x, y) = (100, 100) and load the player image */
-Player::Player() :_counter(0), _x(Define::CENTER_X), _y(Define::CENTER_Y + 500), direction(0), _power(1), _health(50), _noHitTimer(0)
+Player::Player() :
+	_counter(0),
+	_slow(false),
+	_boxAngle(0.0),
+	_x(Define::CENTER_X),
+	_y(Define::CENTER_Y + 500),
+	direction(0),
+	_power(1),
+	_health(50),
+	_noHitTimer(0)
 {
 	//Bullet dummy;
 	//activeEnemyBullets.push_back(dummy);
@@ -25,10 +34,17 @@ bool Player::update()
 			_noHitTimer = 12;
 		}
 	}
+	/* continue rotating hitBox image*/
+	if (_boxAngle <= 2*Define::PI) {
+		_boxAngle += Define::PI / 180;
+	}
+	else {
+		_boxAngle = 0.0;
+	}
+
 	_counter++;
 	move();
 	shotBullets();
-	//setToBeDeletedBullets(HitCheck::getIns()->getPlayerShotHitIndex()); // this might not be needed....
 	_playerShot.initBulletsAfterHittingEnemy(HitCheck::getIns()->getPlayerShotHitIndex());
 	_playerShot.update();
 	return true;
@@ -38,10 +54,18 @@ void Player::draw() const
 {
 	if (_noHitTimer == 0) {
 		DrawRotaGraphF(_x, _y, 1.5f, 0.0f, Image::getIns()->getPlayer()[direction], TRUE);
+		/* when slow mode, show a hit box*/
+		if (_slow) {
+			DrawRotaGraphF(_x, _y, 2.0f, (double)_boxAngle, Image::getIns()->getHitBox(), TRUE);
+		}
 	}
 	else {
 		if (_counter % 7 == 0) { // during no hit time, blink the player image
 			DrawRotaGraphF(_x, _y, 1.5f, 0.0f, Image::getIns()->getPlayer()[direction], TRUE);
+			/* when slow mode, show a hit box*/
+			if (_slow) {
+				DrawRotaGraphF(_x, _y, 2.0f, (double)_boxAngle, Image::getIns()->getHitBox(), TRUE);
+			}
 			_noHitTimer--; // temporarily mutable
 		}
 	}
@@ -98,6 +122,10 @@ void Player::move()
 	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LSHIFT) > 0) {
 		moveX /= 3;
 		moveY /= 3;
+		_slow = true; // change the state of the slow-move mode
+	}
+	else {
+		_slow = false;
 	}
 	// if no horizontal move, set the direction back to normal
 	if (moveX == 0) {

@@ -27,15 +27,17 @@ private:
 	std::vector<int> _playerShotIndex;
 
 	int _counter;
+	bool _slow;
+	float _boxAngle;
 	float _x, _y; // player coordinate
 	float _w = 50.0f; // player width
 	float _h = 50.0f; // player width;
-	float _range = 25.0f; // player range
+	float _range = 7.5f; // player range
 	int direction;
 	int _power;
 	int _health;
 	mutable int _noHitTimer; // temporarily mutable
-	int _image[6]; // place holder for the image
+	//int _image[6]; // place holder for the image
 
 	void move();
 	void shotBullets();

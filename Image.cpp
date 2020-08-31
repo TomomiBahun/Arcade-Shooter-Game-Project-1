@@ -3,11 +3,13 @@
 
 Image::Image()
 {
-	myLoadDivGraph("img/reimu.png", 6, 2, 3, 50, 50, _player);
+	_title = myLoadGraph("img/temp_title.png");
 	_board = myLoadGraph("img/board.png");
 	_back01 = myLoadGraph("img/back01.png");
+	myLoadDivGraph("img/reimu.png", 6, 2, 3, 50, 50, _player);
 	myLoadDivGraph("img/fire_blue.png", 4, 4, 1, 63, 50, _blueFire);
 	myLoadDivGraph("img/fire_green.png", 4, 4, 1, 63, 50, _greenFire);
+	_hitBox = myLoadGraph("img/hitBox.png");
 }
 
 void Image::release()

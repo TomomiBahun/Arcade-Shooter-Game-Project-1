@@ -4,7 +4,7 @@
 
 #define ERR(str) Error::finish(str, __FUNCTION__, __LINE__);
 
-const float WEIGHT = 0.60f; // make the range a bit smaller than the actual radius of the bullet
+const float WEIGHT = 0.90f; // make the range a bit smaller than the actual radius of the bullet
 const float ENLARGE = 1.6f; // the bullet images are enlarged when drawing them on the gameboard. Adjust range following the enlargement.
 
 // hit range (mostly the middle white part of bullets)

@@ -1,7 +1,7 @@
 #include "Shot03.h"
 #include "Define.h"
 
-Shot03::Shot03() : _speed(3.0), _bulletType(1), _bulletColor(2)
+Shot03::Shot03() : _speed(3.0), _bulletType(1), _bulletColor(4)
 {
 	_angle = Define::PI / 2;
 }
