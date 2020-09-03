@@ -12,7 +12,7 @@
 using namespace std;
 
 /* This class holds each enemy object in the list */
-EnemyManager::EnemyManager() : _count(0)
+EnemyManager::EnemyManager() : _count(0), _flag(false)
 {
 }
 
@@ -159,7 +159,7 @@ void EnemyManager::loadEnemyAndShots()
 		_shotList.emplace_back(make_shared<Shot01>());
 	}
 
-	if (_count == 500) {
+/*	if (_count == 500) {
 		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot03>());
 
@@ -189,6 +189,10 @@ void EnemyManager::loadEnemyAndShots()
 
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot02>());
+	}*/
+
+	if (_count == 400) {
+		_flag = true;
 	}
 
 	/* get width and height of enemy in enemy->initialize() */

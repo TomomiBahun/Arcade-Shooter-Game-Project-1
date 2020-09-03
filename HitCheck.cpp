@@ -81,9 +81,6 @@ std::vector<int>& HitCheck::getPlayerShotHitIndex()
 	unique(playerShotHitIndex.begin(), playerShotHitIndex.begin() + playerShotHitIndex.size());
 	sort(playerShotHitIndex.begin(), playerShotHitIndex.end());
 
-	//std::vector<int> copyIndex = playerShotHitIndex;
-	//playerShotHitIndex.clear();
-
 	return playerShotHitIndex;
 }
 

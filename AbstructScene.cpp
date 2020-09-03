@@ -6,5 +6,4 @@
 AbstructScene::AbstructScene(IOnSceneChangedListener* imply, const Parameter& parameter) :
 	_implSceneChanged(imply)
 {
-	// same as... _implSceneChanged = imply;
 }

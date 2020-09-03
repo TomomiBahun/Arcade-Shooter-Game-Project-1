@@ -21,18 +21,39 @@ GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter)
 	_player = make_shared<Player>();
 	_board = make_shared<GameBoard>();
 	_enemyManager = make_shared<EnemyManager>();
+	_boss = make_shared<YakumoRan>();
 }
 
 void GameScene::update()
 {
 	_background->update();
-	_board->update();
+	//_board->update();
 	_player->update();
 	linkPlayerShot(); // keep updating all of the active player shots on EnemyManager class
-	_enemyManager->update();
-	//_board->update();
+	linkPlayerBoard();
+
+	/* when enemyManager's flag is off, normal enemies shoudl be on the game board
+	   otherwise, the stage boss should be on the game board*/
+	if (_enemyManager->getFlag()) {
+		_boss->update();
+	}
+	else {
+		_enemyManager->update();
+		linkEnemyShot(); // keep updating all of the active enemy shots on Player class
+	}
+
+	_board->update();
 	linkPlayerEnemy(); // keep updating the player's location on EnemyManager class
-	linkEnemyShot(); // keep updating all of the active enemy shots on Player class
+
+	/* if the player died, give 2 options (1)go back to the title (2)play again */
+	if (_player->getHealth() < 0) {
+		Parameter parameter;
+		//parameter.set(GameScene::ParameterTagLevel, Define::eLevel::normal);
+		const bool stackClear = false;
+
+		// use the parameter that we set above to specify next scene
+		_implSceneChanged->onSceneChanged(eScene::Option, parameter, stackClear);
+	}
 }
 
 void GameScene::draw() const
@@ -40,7 +61,12 @@ void GameScene::draw() const
 	_background->draw();
 	_board->draw();
 	_player->draw();
-	_enemyManager->draw();
+	if (_enemyManager->getFlag()) {
+		_boss->draw();
+	}
+	else {
+		_enemyManager->draw();
+	}
 	//_board->draw();
 
 }
@@ -60,6 +86,11 @@ int GameScene::getPlayerPower() const
 	return _player->getPower();
 }
 
+int GameScene::getPlayerHealth() const
+{
+	return _player->getHealth();
+}
+
 /* get player's location and power, and pass the value to each enemy
    use this to check if player bullets hit enemies*/
 void GameScene::linkPlayerEnemy()
@@ -70,13 +101,6 @@ void GameScene::linkPlayerEnemy()
 	_enemyManager->setPlayerX(x); // save the player's location at EnemyManager Object
 	_enemyManager->setPlayerY(y); // save the player's location at EnemyManager object
 	_enemyManager->setPlayerPower(power); // save the player's power at EnemeyManager object
-
-	// I could maybe use iterator
-	/*for (auto it = _enemyManager->getList().begin(); it != _enemyManager->getList().end();) {
-		(*it)->setPlayerX(x);
-		(*it)->setPlayerY(y);
-		it++;
-	}*/
 }
 
 /* keep updating player's shot in EnemyManager class.
@@ -92,4 +116,9 @@ void GameScene::linkPlayerShot()
 void GameScene::linkEnemyShot()
 {
 	_player->setActiveEnemyBullets(_enemyManager->getActiveEnemyBullet());
+}
+
+void GameScene::linkPlayerBoard()
+{
+	_board->setPlayerProperty(getPlayerHealth(), getPlayerPower());
 }

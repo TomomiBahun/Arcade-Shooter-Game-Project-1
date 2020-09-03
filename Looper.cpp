@@ -1,7 +1,8 @@
 #include "Looper.h"
-#include "TitleScene.h"
 #include "Error.h"
+#include "TitleScene.h"
 #include "GameScene.h"
+#include "OptionScene.h"
 #include "keyboard.h"
 #include "Image.h"
 
@@ -30,6 +31,7 @@ bool Looper::loop()
 	return true;
 }
 
+/* Inherited from the IOnSceneChangedListener class */
 void Looper::onSceneChanged(const eScene scene, const Parameter& parameter, const bool stackClear)
 {
 	if (stackClear) {// if stackClear parameter is passed for this function
@@ -44,6 +46,9 @@ void Looper::onSceneChanged(const eScene scene, const Parameter& parameter, cons
 		break;
 	case Game:
 		_sceneStack.push(make_shared<GameScene>(this, parameter));
+		break;
+	case Option:
+		_sceneStack.push(make_shared<OptionScene>(this, parameter));
 		break;
 	default:
 		ERR("Nonexistent scene was called");

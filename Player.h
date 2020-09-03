@@ -14,6 +14,7 @@ public:
 	float getX() const { return _x; }
 	float getY() const { return _y; }
 	int getPower() const { return _power; }
+	int getHealth() const { return _health; }
 	PlayerShot getPlayerShot() const { return _playerShot; }
 	std::vector<Bullet>& getActivePlayerBullet();
 	PlayerShot& getPlayerShotRef() { return _playerShot; }
@@ -36,7 +37,7 @@ private:
 	int direction;
 	int _power;
 	int _health;
-	mutable int _noHitTimer; // temporarily mutable
+	int _noHitTimer;
 	//int _image[6]; // place holder for the image
 
 	void move();

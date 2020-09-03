@@ -34,6 +34,12 @@ bool Player::update()
 			_noHitTimer = 12;
 		}
 	}
+	else {
+		if (_counter % 7 == 0)
+			_noHitTimer--;
+	}
+	_activeEnemyBullets.clear(); // after checking all of the enemy bullets in this frame, init the vector
+
 	/* continue rotating hitBox image*/
 	if (_boxAngle <= 2*Define::PI) {
 		_boxAngle += Define::PI / 180;
@@ -66,7 +72,6 @@ void Player::draw() const
 			if (_slow) {
 				DrawRotaGraphF(_x, _y, 2.0f, (double)_boxAngle, Image::getIns()->getHitBox(), TRUE);
 			}
-			_noHitTimer--; // temporarily mutable
 		}
 	}
 	_playerShot.draw();
@@ -165,6 +170,7 @@ bool Player::didBulletHitMe()
 {
 	for (int i = 0; i < _activeEnemyBullets.size(); i++) {
 		if (HitCheck::getIns()->didBulletHitPlayer(_activeEnemyBullets, i, _x, _y, _range)) {
+			_health -= 10; // all enemy bullets power are 10
 			return true;
 		}
 	}

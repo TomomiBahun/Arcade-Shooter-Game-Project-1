@@ -16,10 +16,12 @@ Background::Background()
 
 bool Background::update()
 {
-	for (int i = 0; i < IMG_TOTAL; i++) {
-		_list[i]->y -= SCROLL_SPEED;
-		if (_list[i]->y < -IMG_HEIGHT) { // when the whole image scrolls the area
-			_list[i]->y += IMG_HEIGHT * 2; // put the img below the game board
+	if (_list.size() > 1) {
+		for (int i = 0; i < IMG_TOTAL; i++) {
+			_list[i]->y -= SCROLL_SPEED;
+			if (_list[i]->y < -IMG_HEIGHT) { // when the whole image scrolls the area
+				_list[i]->y += IMG_HEIGHT * 2; // put the img below the game board
+			}
 		}
 	}
 	return true;
@@ -28,8 +30,13 @@ bool Background::update()
 void Background::draw() const
 {
 	SetDrawArea(0, 0, Define::OUTER_W, Define::OUTER_H); // just the movable area
-	for (int i = 0; i < IMG_TOTAL; i++) {
-		DrawGraphF(_list[i]->x, _list[i]->y, _list[i]->img, FALSE);
+	if (_list.size() > 1) {
+		for (int i = 0; i < IMG_TOTAL; i++) {
+			DrawGraphF(_list[i]->x, _list[i]->y, _list[i]->img, FALSE);
+		}
+	}
+	else {
+		DrawGraphF(_list[0]->x, _list[0]->y, _list[0]->img, FALSE);
 	}
 	SetDrawArea(0, 0, Define::WIN_W, Define::WIN_H);
 }

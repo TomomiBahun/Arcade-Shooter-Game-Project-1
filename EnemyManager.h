@@ -23,6 +23,7 @@ public:
 	std::vector<Bullet>& getActiveEnemyBullet();
 	std::vector<std::shared_ptr<AbstractEnemy>>& getList() { return _list; }
 	std::vector<int>& getPlayerShotIndex() { return playerShotIndex; } // this will return the index of player shot that hit the enemy. These shots needs to be deleted.
+	bool getFlag() const { return _flag; }
 	void setPlayerX(float x) { _playerX = x; }
 	void setPlayerY(float y) { _playerY = y; }
 	void setPlayerPower(int power) { _playerPower = power; }
@@ -33,6 +34,7 @@ public:
 	float angleEnemyAndPlayer(float enemyX, float enemyY) const;
 
 private:
+	bool _flag; // when true, boss should appear on the game board
 	int _count;
 	float _playerX, _playerY;
 	int _playerPower;
