@@ -18,9 +18,11 @@ bool YakumoRan::update()
 	if (_counter == 0) {
 		inputDestinationAndTime(70, Define::CENTER_X, Define::CENTER_Y - 150);
 	}
-	if(_counter > 80 && _moving == false) {
+	if(_counter > 80 && _moving == false && _canBossStartBullets == false) {
 		moveUpDown();
 	}
+
+	/* controls boss's move */
 	if (_moving) {
 		moveBoss();
 	}

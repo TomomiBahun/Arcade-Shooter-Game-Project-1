@@ -8,6 +8,7 @@ public:
 	virtual ~YakumoRan() = default;
 	void draw() const override;
 	bool update() override;
+	
 
 private:
 	float angleBossAndPlayer();

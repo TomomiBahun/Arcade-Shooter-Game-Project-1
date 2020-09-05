@@ -9,7 +9,6 @@ public:
 
 	void setBullets(float x, float y, float angle, int power) override;
 	void initBulletsAfterHittingEnemy(std::vector<int>& index);
-	std::shared_ptr<AbstractShot> clone(/*std::shared_ptr<AbstractShot> base*/) override;
 
 private:
 	float _speed = 17;

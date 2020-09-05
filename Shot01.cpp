@@ -14,11 +14,3 @@ void Shot01::setBullets(float x, float y, float angle, int power)
 		shot[k].setBullet(x, y, _speed, angle, power, _bulletType, _bulletColor);
 	}
 }
-
-/* clone a content of the pointer (in progress)*/
-std::shared_ptr<AbstractShot> Shot01::clone(/*std::shared_ptr<AbstractShot> base*/)
-{
-	std::shared_ptr<AbstractShot> clone(/*base*/ this);
-
-	return clone;
-}

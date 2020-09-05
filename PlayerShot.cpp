@@ -41,11 +41,3 @@ void PlayerShot::initBulletsAfterHittingEnemy(std::vector<int>& index)
 		shot[index[i]].initBullet();
 	}
 }
-
-/* I want to clone a content of the pointer, but not working now*/
-std::shared_ptr<AbstractShot> PlayerShot::clone(/*std::shared_ptr<AbstractShot> base*/)
-{
-	std::shared_ptr<AbstractShot> clone(/*base*/ this);
-
-	return clone;
-}

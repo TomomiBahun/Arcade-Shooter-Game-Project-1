@@ -158,6 +158,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="AbstractEnemy.cpp" />
     <ClCompile Include="BlueFire.cpp" />
+    <ClCompile Include="Conversation.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="AbstractEnemy.h" />
     <ClInclude Include="BlueFire.h" />
+    <ClInclude Include="Conversation.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameScene.h" />

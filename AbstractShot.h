@@ -18,10 +18,7 @@ public:
 
 	int isBulletAvailable() const;
 	virtual void setBullets(float x, float y, float angle, int power) = 0;
-	virtual std::shared_ptr<AbstractShot> clone(/*std::shared_ptr<AbstractShot> base*/) = 0;
-	//void setRange(float range);
 
 protected:
 	int _counter;
-	//float _range;
 };

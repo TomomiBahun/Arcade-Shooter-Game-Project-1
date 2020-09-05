@@ -22,12 +22,12 @@ GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter)
 	_board = make_shared<GameBoard>();
 	_enemyManager = make_shared<EnemyManager>();
 	_boss = make_shared<YakumoRan>();
+	_conversation = make_shared<Conversation>();
 }
 
 void GameScene::update()
 {
 	_background->update();
-	//_board->update();
 	_player->update();
 	linkPlayerShot(); // keep updating all of the active player shots on EnemyManager class
 	linkPlayerBoard();
@@ -35,7 +35,12 @@ void GameScene::update()
 	/* when enemyManager's flag is off, normal enemies shoudl be on the game board
 	   otherwise, the stage boss should be on the game board*/
 	if (_enemyManager->getFlag()) {
-		_boss->update();
+		if (!_conversation->update()) { // when conversation is done, start boss bullets
+			_boss->setBossShotStatus(true);
+		}
+		if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
+			_boss->update(); // boss need to keep moving regardless of the scene
+		}
 	}
 	else {
 		_enemyManager->update();
@@ -62,7 +67,12 @@ void GameScene::draw() const
 	_board->draw();
 	_player->draw();
 	if (_enemyManager->getFlag()) {
-		_boss->draw();
+		if (!_boss->getBossShotStatus()) {
+			_conversation->draw();
+		}
+		if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
+			_boss->draw();
+		}
 	}
 	else {
 		_enemyManager->draw();

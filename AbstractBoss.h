@@ -7,6 +7,10 @@ public:
 	AbstractBoss();
 	virtual ~AbstractBoss() = default;
 	bool update() override;
+	void setBossShotStatus(bool answer) { _canBossStartBullets = answer; }
+	void setBossPresenceStatus(bool answer) { _canBossCome = answer; }
+	bool getBossShotStatus() { return _canBossStartBullets; }
+	bool getBossPresenceStatus() { return _canBossCome; }
 
 protected:
 	int _counter;
@@ -30,5 +34,10 @@ protected:
 	float _preX;
 	float _preY;
 	bool _bottom;
+
+	/* attributes to control scenes*/
+	//bool _startShots;
+	bool _canBossStartBullets;
+	bool _canBossCome;
 };
 

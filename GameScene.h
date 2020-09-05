@@ -6,6 +6,7 @@
 #include "AbstractBackground.h"
 #include "EnemyManager.h"
 #include "YakumoRan.h"
+#include "Conversation.h"
 
 class GameScene : public AbstructScene
 {
@@ -33,6 +34,7 @@ private:
 	std::shared_ptr<AbstractBackground> _background;
 	std::shared_ptr<EnemyManager> _enemyManager;
 	std::shared_ptr<AbstractBoss> _boss;
+	std::shared_ptr<Conversation> _conversation;
 
 	void linkPlayerEnemy();
 	void linkPlayerShot();

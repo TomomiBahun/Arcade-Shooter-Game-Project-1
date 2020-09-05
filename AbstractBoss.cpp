@@ -15,7 +15,8 @@ AbstractBoss::AbstractBoss() :
 	_v0x(0), _v0y(0),
 	_ax(0), _ay(0),
 	_preX(0), _preY(0),
-	_bottom(false)
+	_bottom(false),
+	_canBossStartBullets(false)
 {
 }
 
