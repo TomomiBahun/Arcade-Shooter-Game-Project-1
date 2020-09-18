@@ -29,26 +29,31 @@ void GameScene::update()
 {
 	_background->update();
 	_player->update();
-	linkPlayerShot(); // keep updating all of the active player shots on EnemyManager class
+	linkPlayerShotAndEnemy(); // keep updating all of the active player shots on EnemyManager class
 	linkPlayerBoard();
 
 	/* when enemyManager's flag is off, normal enemies shoudl be on the game board
 	   otherwise, the stage boss should be on the game board*/
 	if (_enemyManager->getFlag()) {
-		if (!_conversation->update()) { // when conversation is done, start boss bullets
+		if (!_conversation->update() && !_boss->getBossShotStatus()) { // when conversation is done, start boss bullets
 			_boss->setBossShotStatus(true);
 		}
 		if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
+			linkPlayerShotAndBoss();
 			_boss->update(); // boss need to keep moving regardless of the scene
+		}
+		if (_boss->getBossShotStatus()) { // when boss starts shots, then keep updating shots and location info on boss and player classes
+			linkBossShotAndPlayer();
+			linkPlayerBoss();
 		}
 	}
 	else {
 		_enemyManager->update();
-		linkEnemyShot(); // keep updating all of the active enemy shots on Player class
+		linkEnemyShotAndPlayer(); // keep updating all of the active enemy shots on Player class
+		linkPlayerEnemy(); // keep updating the player's location on EnemyManager class
 	}
 
 	_board->update();
-	linkPlayerEnemy(); // keep updating the player's location on EnemyManager class
 
 	/* if the player died, give 2 options (1)go back to the title (2)play again */
 	if (_player->getHealth() < 0) {
@@ -113,19 +118,42 @@ void GameScene::linkPlayerEnemy()
 	_enemyManager->setPlayerPower(power); // save the player's power at EnemeyManager object
 }
 
-/* keep updating player's shot in EnemyManager class.
-   Also initialize a pointer in EnemyManager class. This needs to be called _enemyManager's update*/
-void GameScene::linkPlayerShot()
+void GameScene::linkPlayerBoss()
 {
-	//_enemyManager->setActivePlayerBullets(_player->getActivePlayerBullet());
+	float x = getPlayerX();
+	float y = getPlayerY();
+	int power = getPlayerPower();
+	_boss->setPlayerX(x); // save the player's location at boss Object
+	_boss->setPlayerY(y); // save the player's location at boss object
+	_boss->setPlayerPower(power); // save the player's power at boss object
+}
+
+/* keep updating player's shot in EnemyManager class. Also initialize a pointer in EnemyManager class.
+   This needs to be called before _enemyManager's update */
+void GameScene::linkPlayerShotAndEnemy()
+{
 	_enemyManager->setPlayerShot(_player->getPlayerShotRef());
+}
+
+/* keep updating player's shot in Boss class. Also initialize a pointer in EnemyManager class.
+   This needs to be called _boss's update. This shouldn't be called before conversation is done */
+void GameScene::linkPlayerShotAndBoss()
+{
+	_boss->setPlayerShot(_player->getPlayerShotRef());
 }
 
 /* pass all of the active enemy shots to player class.
    use this to check if the enemy shot hits the player */
-void GameScene::linkEnemyShot()
+void GameScene::linkEnemyShotAndPlayer()
 {
 	_player->setActiveEnemyBullets(_enemyManager->getActiveEnemyBullet());
+}
+
+/* pass all of the active boss shots to player class.
+   use this to check if the boss shot hits the player */
+void GameScene::linkBossShotAndPlayer()
+{
+	_player->setActiveBossBullets(_boss->getActiveBossBullet(_boss->getShotIndex()));
 }
 
 void GameScene::linkPlayerBoard()

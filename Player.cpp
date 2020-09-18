@@ -21,8 +21,6 @@ Player::Player() :
 	_health(30),
 	_noHitTimer(0)
 {
-	//Bullet dummy;
-	//activeEnemyBullets.push_back(dummy);
 }
 
 bool Player::update()
@@ -38,7 +36,10 @@ bool Player::update()
 		if (_counter % 7 == 0)
 			_noHitTimer--;
 	}
-	_activeEnemyBullets.clear(); // after checking all of the enemy bullets in this frame, init the vector
+
+	/* after checking all of the bullets in this frame, init the vector */
+	_activeEnemyBullets.clear();
+	_activeBossBullets.clear();
 
 	/* continue rotating hitBox image*/
 	if (_boxAngle <= 2*Define::PI) {
@@ -95,6 +96,15 @@ void Player::setActiveEnemyBullets(std::vector<Bullet>& enemyBullets)
 	_activeEnemyBullets.clear(); // delete all elements in vector before updating it
 	for (int i = 0; i < enemyBullets.size(); i++) {
 		_activeEnemyBullets.push_back(enemyBullets[i]);
+	}
+}
+
+/* get boss's bullet information at Player class*/
+void Player::setActiveBossBullets(std::vector<Bullet>& bossBullets)
+{
+	_activeEnemyBullets.clear(); // delete all elements in vector before updating it
+	for (int i = 0; i < bossBullets.size(); i++) {
+		_activeBossBullets.push_back(bossBullets[i]);
 	}
 }
 
@@ -172,6 +182,26 @@ bool Player::didBulletHitMe()
 		if (HitCheck::getIns()->didBulletHitPlayer(_activeEnemyBullets, i, _x, _y, _range)) {
 			_health -= 10; // all enemy bullets power are 10
 			return true;
+		}
+	}
+
+	/* this part is very expensive. I should fix it */
+	for (int i = 0; i < _activeBossBullets.size(); i++) {
+		if (_y > Define::CENTER_Y) {
+			if (_activeBossBullets[i].getY() > Define::CENTER_Y) {
+				if (HitCheck::getIns()->didBulletHitPlayer(_activeBossBullets, i, _x, _y, _range)) {
+					_health -= 10; // all enemy bullets power are 10
+					return true;
+				}
+			}
+		}
+		else { // if(_y < Define::CENTER_Y)
+			if (_activeBossBullets[i].getY() < Define::CENTER_Y) {
+				if (HitCheck::getIns()->didBulletHitPlayer(_activeBossBullets, i, _x, _y, _range)) {
+					_health -= 10; // all enemy bullets power are 10
+					return true;
+				}
+			}
 		}
 	}
 	return false;

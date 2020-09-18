@@ -40,7 +40,7 @@ bool Bullet::update()
 void Bullet::draw() const
 {
 	if (isInside() == true) {
-		DrawRotaGraphF(_x, _y, 1.6f, 0.0f, ImageBullet::getIns()->getImage(static_cast<ImageBullet::eBulletType>(_bulletType), static_cast<ImageBullet::eBulletColor>(_bulletColor)), TRUE);
+		DrawRotaGraphF(_x, _y, 1.6f, _angle + Define::PI/2, ImageBullet::getIns()->getImage(static_cast<ImageBullet::eBulletType>(_bulletType), static_cast<ImageBullet::eBulletColor>(_bulletColor)), TRUE);
 	}
 }
 
@@ -94,7 +94,7 @@ bool Bullet::isInside() const
 	float bulletHeight = (float)ImageBullet::getIns()->getSize(_bulletType)->getHeight();
 	float leftBorder = Define::IN_X + (bulletWidth / 2);
 	float rightBorder = Define::IN_X + Define::INNER_W - (bulletWidth / 2);
-	float upperBorder = Define::IN_Y + (bulletHeight / 2);
+	float upperBorder = Define::IN_Y;
 	float bottomBorder = Define::IN_Y + Define::INNER_H - (bulletHeight / 2);
 
 	if (_x < leftBorder || rightBorder < _x || _y < upperBorder || bottomBorder < _y) {

@@ -14,6 +14,9 @@ public:
 	const static int IN_X;
 	const static int IN_Y;
 
+	const static int BOSSBASE_X;
+	const static int BOSSBASE_Y;
+
 	const static float PI;
 
 	enum eStage {

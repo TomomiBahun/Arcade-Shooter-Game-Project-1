@@ -39,6 +39,7 @@ bool HitCheck::didBulletHitPlayer(std::vector<Bullet> shot, int n, float x, floa
 }
 
 /* this checks if bullet hit enemy. Also save the index number of player's bullets that hit enemy
+*  when using this function, clearPlayerShotHitIndex() needs to be used as well.
    @shot[] vector of bullets. Size of vector is always 150(MAX_BULLETS)
    @n index of bullets vector
    @x the charactor's location on x coordinate
@@ -75,15 +76,16 @@ bool HitCheck::didBulletHitEnemy(Bullet shot[], int n, float x, float y, float r
 	return false; // no hit
 }
 
+/* player bullets might hit several enemies in a frame. sort the vector before using it */
 std::vector<int>& HitCheck::getPlayerShotHitIndex()
 {
-	// player bullets might hit several enemies in a frame. sort the vector before using it
 	unique(playerShotHitIndex.begin(), playerShotHitIndex.begin() + playerShotHitIndex.size());
 	sort(playerShotHitIndex.begin(), playerShotHitIndex.end());
 
 	return playerShotHitIndex;
 }
 
+/* this reset the playerShotHitIndex. This needs to be used anytime didBulletHitEnemy() is called */
 void HitCheck::clearPlayerShotHitIndex()
 {
 	playerShotHitIndex.clear();

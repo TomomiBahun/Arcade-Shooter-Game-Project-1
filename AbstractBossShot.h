@@ -4,14 +4,14 @@
 #include <memory>
 #include <vector>
 
-class AbstractShot : public Task
+class AbstractBossShot : public Task
 {
 public:
-	const static int MAX_BULLETS = 150;
+	const static int MAX_BULLETS = 800;
 	Bullet shot[MAX_BULLETS]; // set the initial location in the constructor
 
-	AbstractShot();
-	virtual ~AbstractShot() = default;
+	AbstractBossShot();
+	virtual ~AbstractBossShot() = default;
 	bool update() override;
 	void draw() const override;
 

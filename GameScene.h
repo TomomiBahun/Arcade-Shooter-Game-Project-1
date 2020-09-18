@@ -36,8 +36,11 @@ private:
 	std::shared_ptr<AbstractBoss> _boss;
 	std::shared_ptr<Conversation> _conversation;
 
-	void linkPlayerEnemy();
-	void linkPlayerShot();
-	void linkEnemyShot();
-	void linkPlayerBoard();
+	void linkPlayerEnemy(); // pass player's location and power info to EnemyManager class
+	void linkPlayerBoss(); // pass player's location and power info to Boss class
+	void linkPlayerShotAndEnemy(); // pass player's shot info to EnemyManager class
+	void linkPlayerShotAndBoss(); // pass player's shot info to Boss class
+	void linkEnemyShotAndPlayer(); // pass Enemies' shots info to Player class
+	void linkBossShotAndPlayer(); // pass Boss's shots info to Player class
+	void linkPlayerBoard(); // pass player's health and power info to GameBoard class so that health and power can be shown
 };

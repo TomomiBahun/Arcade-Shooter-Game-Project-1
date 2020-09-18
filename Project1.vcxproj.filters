@@ -117,6 +117,12 @@
     <ClCompile Include="Conversation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RanShot01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractBossShot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SystemMain.h">
@@ -228,6 +234,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Conversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RanShot01.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractBossShot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,14 +22,11 @@ public:
 
 	std::vector<Bullet>& getActiveEnemyBullet();
 	std::vector<std::shared_ptr<AbstractEnemy>>& getList() { return _list; }
-	std::vector<int>& getPlayerShotIndex() { return playerShotIndex; } // this will return the index of player shot that hit the enemy. These shots needs to be deleted.
 	bool getFlag() const { return _flag; }
 	void setPlayerX(float x) { _playerX = x; }
 	void setPlayerY(float y) { _playerY = y; }
 	void setPlayerPower(int power) { _playerPower = power; }
-	void setActivePlayerBullets(std::vector<Bullet>& playerBullets);
-
-	void setPlayerShot(AbstractShot& shot); // testing
+	void setPlayerShot(AbstractShot& shot); // receives Player's shot reference to do hit-check at EnemyManager class
 
 	float angleEnemyAndPlayer(float enemyX, float enemyY) const;
 
@@ -38,12 +35,10 @@ private:
 	int _count;
 	float _playerX, _playerY;
 	int _playerPower;
-	AbstractShot* playerShot; // testing
-	std::vector<int> playerShotIndex;
+	AbstractShot* playerShot; // receives player's shot to do hit-check at EnemyManager class
 	std::vector<Bullet> _activeEnemyBullets; // this is to pass all active enemy bullets to Player class
-	std::vector<Bullet> _activePlayerBullets; // this is to check if player's shot hits enemy
-	std::vector<std::shared_ptr<AbstractEnemy>> _list;
-	std::vector<std::shared_ptr<AbstractShot>> _shotList;
+	std::vector<std::shared_ptr<AbstractEnemy>> _list; // enemy's list
+	std::vector<std::shared_ptr<AbstractShot>> _shotList; // alive enemy's shot list
 	std::vector<std::shared_ptr<AbstractShot>> _continueShotList; // even after enemy dies, bullets on the board need to keep moving. 
 
 	bool didBulletHitMe(std::shared_ptr<AbstractEnemy> Enemy);

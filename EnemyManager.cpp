@@ -87,13 +87,13 @@ std::vector<Bullet>& EnemyManager::getActiveEnemyBullet()
 	return _activeEnemyBullets;
 }
 
-void EnemyManager::setActivePlayerBullets(std::vector<Bullet>& playerBullets)
+/*void EnemyManager::setActivePlayerBullets(std::vector<Bullet>& playerBullets)
 {
 	_activePlayerBullets.clear(); // delete all elements in vector before updating it
 	for (int i = 0; i < playerBullets.size(); i++) {
 		_activePlayerBullets.push_back(playerBullets[i]);
 	}
-}
+}*/
 
 float EnemyManager::angleEnemyAndPlayer(float enemyX, float enemyY) const
 {
@@ -126,14 +126,14 @@ void EnemyManager::setPlayerShot(AbstractShot& shot)
 void EnemyManager::loadEnemyAndShots()
 {
 	// One shot type per regular enemy. Total num of _list = Total num of _shotList
-	/*if (_count == 200) {
+	if (_count == 200) {
 		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
 
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
 	}
-
+	/*
 	if (_count == 251) {
 		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
@@ -188,9 +188,9 @@ void EnemyManager::loadEnemyAndShots()
 
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot02>());
-	}*/
-
-	if (_count == 200) {
+	}
+	*/
+	if (_count == 250) {
 		_flag = true;
 	}
 

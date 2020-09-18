@@ -26,16 +26,19 @@ const int SORT_Z[] =
 ImageBullet::ImageBullet()
 {
 	/* store size in vector*/
-	_sizeList.push_back(new Size(18, 13));
-	_sizeList.push_back(new Size(29, 27));
-	_sizeList.push_back(new Size(18, 20));
-	myLoadDivGraph("img/shot_smallBall.png");
-	myLoadDivGraph("img/shot_bigBall.png");
-	myLoadDivGraph("img/shot_fuda.png");
+	_sizeList.push_back(new Size(18, 13)); // small ball
+	_sizeList.push_back(new Size(29, 27)); // big ball
+	_sizeList.push_back(new Size(9, 17)); // sharp bullet
+	_sizeList.push_back(new Size(18, 20)); // fuda
+	myLoadDivGraph("../img/shot_smallBall.png");
+	myLoadDivGraph("../img/shot_bigBall.png");
+	myLoadDivGraph("../img/shot_sharp.png");
+	myLoadDivGraph("../img/shot_fuda.png");
 
 	/* store range in vector*/
 	_range.push_back(4.5f * WEIGHT * ENLARGE); // small ball
 	_range.push_back(10.0f * WEIGHT * ENLARGE); // big ball
+	_range.push_back(4.5f * WEIGHT * ENLARGE); // sharp bullet
 	_range.push_back(4.5f * ENLARGE); // fuda - player's bullet
 }
 

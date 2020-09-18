@@ -28,8 +28,14 @@ public:
 	/* images player& Enemy normal pic*/
 	int const getReimuNormal() { return _reimuNormal; }
 	int const getReimuNormalLayered() { return _reimuNormalLayered; }
+	int const getReimuAngry() { return _reimuAngry; }
+	int const getReimuAngryLayered() { return _reimuAngryLayered; }
+
 	int const getRanNormal() { return _ranNormal; }
 	int const getRanNormalLayered() { return _ranNormalLayered; }
+	int const getRanTired() { return _ranTired; }
+	int const getRanTiredLayered() { return _ranTiredLayered; }
+	int const getRanConfident() { return _ranConfident; }
 
 	/* Decorative images*/
 	int const getHitBox(){ return _hitBox; }
@@ -38,6 +44,7 @@ public:
 	int const getHealth() { return _health; }
 	const int* getNumber() { return _number; }
 	int const getMessagebox() { return _messagebox; }
+	int const getBossHealth() { return _bossHealth; }
 
 private:
 	int myLoadGraph(const char*);
@@ -62,8 +69,13 @@ private:
 	/* images player& Enemy normal pic*/
 	int _reimuNormal;
 	int _reimuNormalLayered;
+	int _reimuAngry;
+	int _reimuAngryLayered;
 	int _ranNormal;
 	int _ranNormalLayered;
+	int _ranTired;
+	int _ranTiredLayered;
+	int _ranConfident;
 
 	/* Decorative images*/
 	int _hitBox;
@@ -72,5 +84,6 @@ private:
 	int _health;
 	int _number[10];
 	int _messagebox;
+	int _bossHealth;
 };
 

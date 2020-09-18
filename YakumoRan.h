@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractBoss.h"
+#include "AbstractBossShot.h"
 
 class YakumoRan : public AbstractBoss
 {
@@ -11,10 +12,9 @@ public:
 	
 
 private:
-	float angleBossAndPlayer();
-	float angleBossAndDestination();
 	void inputDestinationAndTime(int t, float xDest, float yDest);
 	void moveBoss();
 	void moveUpDown(); // stay at the base potision, but keep moving
+	void drawHealth() const;
 };
 

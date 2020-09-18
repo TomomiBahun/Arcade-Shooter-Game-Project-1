@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractBackground.cpp" />
     <ClCompile Include="AbstractBoss.cpp" />
+    <ClCompile Include="AbstractBossShot.cpp" />
     <ClCompile Include="AbstractShot.cpp" />
     <ClCompile Include="AbstructScene.cpp" />
     <ClCompile Include="Background.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="OptionScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerShot.cpp" />
+    <ClCompile Include="RanShot01.cpp" />
     <ClCompile Include="Round.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="Error.cpp" />
@@ -189,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractBackground.h" />
     <ClInclude Include="AbstractBoss.h" />
+    <ClInclude Include="AbstractBossShot.h" />
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="AbstractShot.h" />
     <ClInclude Include="Background.h" />
@@ -207,6 +210,7 @@
     <ClInclude Include="OptionScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
+    <ClInclude Include="RanShot01.h" />
     <ClInclude Include="Round.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Error.h" />

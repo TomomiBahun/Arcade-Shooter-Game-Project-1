@@ -21,8 +21,13 @@ Image::Image()
 	/* images player& Enemy normal pic*/
 	_reimuNormal = myLoadGraph("../img/ReimuNormal.png");
 	_reimuNormalLayered = myLoadGraph("../img/ReimuNormalLayered.png");
-	_ranNormal = myLoadGraph("../img/YakumoRanNormal.png");
-	_ranNormalLayered = myLoadGraph("../img/YakumoRanNormalLayered.png");
+	_reimuAngry = myLoadGraph("../img/ReimuAngry.png");
+	_reimuAngryLayered = myLoadGraph("../img/ReimuAngryLayered.png");
+	_ranNormal = myLoadGraph("../img/RanNormal.png");
+	_ranNormalLayered = myLoadGraph("../img/RanNormalLayered.png");
+	_ranTired = myLoadGraph("../img/RanTired.png");
+	_ranTiredLayered = myLoadGraph("../img/RanTiredLayered.png");
+	_ranConfident = myLoadGraph("../img/RanConfident.png");
 
 	/* Decorative images*/
 	_hitBox = myLoadGraph("../img/hitBox.png");
@@ -31,6 +36,7 @@ Image::Image()
 	_health = myLoadGraph("../img/heart.png");
 	myLoadDivGraph("../img/numbers.png", 10, 10, 1, 16, 18, _number);
 	_messagebox = myLoadGraph("../img/messagebox.png");
+	_bossHealth = myLoadGraph("../img/bossHealth.png");
 }
 
 void Image::release()
