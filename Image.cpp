@@ -37,6 +37,8 @@ Image::Image()
 	myLoadDivGraph("../img/numbers.png", 10, 10, 1, 16, 18, _number);
 	_messagebox = myLoadGraph("../img/messagebox.png");
 	_bossHealth = myLoadGraph("../img/bossHealth.png");
+	_spellCardLeft = myLoadGraph("../img/SpellCardLeft.png");
+	_spellCardRight = myLoadGraph("../img/SpellCardRight.png");
 }
 
 void Image::release()

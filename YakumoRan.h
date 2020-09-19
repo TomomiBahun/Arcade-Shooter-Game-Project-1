@@ -9,12 +9,12 @@ public:
 	virtual ~YakumoRan() = default;
 	void draw() const override;
 	bool update() override;
-	
+	bool updateShot(int movePattern, float x, float y);
 
 private:
-	void inputDestinationAndTime(int t, float xDest, float yDest);
-	void moveBoss();
-	void moveUpDown(); // stay at the base potision, but keep moving
-	void drawHealth() const;
+	bool preShot;
+	bool isReadyForEffect;
+	bool isShot01Ready;
+	bool isShot02Ready;
 };
 

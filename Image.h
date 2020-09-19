@@ -45,6 +45,8 @@ public:
 	const int* getNumber() { return _number; }
 	int const getMessagebox() { return _messagebox; }
 	int const getBossHealth() { return _bossHealth; }
+	int const getSpellCardLeft() { return _spellCardLeft; }
+	int const getSpellCardRight() { return _spellCardRight; }
 
 private:
 	int myLoadGraph(const char*);
@@ -85,5 +87,7 @@ private:
 	int _number[10];
 	int _messagebox;
 	int _bossHealth;
+	int _spellCardLeft;
+	int _spellCardRight;
 };
 

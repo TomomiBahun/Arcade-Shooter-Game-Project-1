@@ -175,28 +175,26 @@ void Player::shotBullets()
 	}
 }
 
-/* check if enemy's bullet hits the player*/
+/* Check if enemy's bullet hits the player.
+   This function can become very expensive easily, because there can be so many bullets on the screen.
+   Check only the area around the player...
+   _x-100 < check area < _x+100, _y-100 < check area < _y+100 */
 bool Player::didBulletHitMe()
 {
 	for (int i = 0; i < _activeEnemyBullets.size(); i++) {
-		if (HitCheck::getIns()->didBulletHitPlayer(_activeEnemyBullets, i, _x, _y, _range)) {
-			_health -= 10; // all enemy bullets power are 10
-			return true;
-		}
-	}
-
-	/* this part is very expensive. I should fix it */
-	for (int i = 0; i < _activeBossBullets.size(); i++) {
-		if (_y > Define::CENTER_Y) {
-			if (_activeBossBullets[i].getY() > Define::CENTER_Y) {
-				if (HitCheck::getIns()->didBulletHitPlayer(_activeBossBullets, i, _x, _y, _range)) {
+		if (_y - 100 < _activeEnemyBullets[i].getY() && _activeEnemyBullets[i].getY() < _y + 100) {
+			if (_x < _activeEnemyBullets[i].getX() && _activeEnemyBullets[i].getX() < _x + 100) {
+				if (HitCheck::getIns()->didBulletHitPlayer(_activeEnemyBullets, i, _x, _y, _range)) {
 					_health -= 10; // all enemy bullets power are 10
 					return true;
 				}
 			}
 		}
-		else { // if(_y < Define::CENTER_Y)
-			if (_activeBossBullets[i].getY() < Define::CENTER_Y) {
+	}
+
+	for (int i = 0; i < _activeBossBullets.size(); i++) {
+		if (_y - 100 < _activeBossBullets[i].getY() && _activeBossBullets[i].getY() < _y + 100) {
+			if (_x < _activeBossBullets[i].getX() && _activeBossBullets[i].getX() < _x + 100) {
 				if (HitCheck::getIns()->didBulletHitPlayer(_activeBossBullets, i, _x, _y, _range)) {
 					_health -= 10; // all enemy bullets power are 10
 					return true;

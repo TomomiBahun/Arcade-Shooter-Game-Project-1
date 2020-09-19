@@ -34,20 +34,28 @@ void GameScene::update()
 
 	/* when enemyManager's flag is off, normal enemies shoudl be on the game board
 	   otherwise, the stage boss should be on the game board*/
+
+	/* while boss is on the game board (no regular enemies) */
 	if (_enemyManager->getFlag()) {
-		if (!_conversation->update() && !_boss->getBossShotStatus()) { // when conversation is done, start boss bullets
+		// keep setting new boss bullets... when conversation is over & boss's shot status is ON
+		if (!_conversation->update() && !_boss->getBossShotStatus()) {
+			_boss->setBossConversationStatus(false);
 			_boss->setBossShotStatus(true);
 		}
-		if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
+
+		// let the boss show up on the game screen... when conversation is at certain point
+		if (_conversation->getBoss()) {
 			linkPlayerShotAndBoss();
 			_boss->update(); // boss need to keep moving regardless of the scene
 		}
-		if (_boss->getBossShotStatus()) { // when boss starts shots, then keep updating shots and location info on boss and player classes
+
+		// Keep updating shots and location info on boss and player classes... when boss's shot status is ON
+		if (_boss->getBossShotStatus()) {
 			linkBossShotAndPlayer();
 			linkPlayerBoss();
 		}
 	}
-	else {
+	else { /* while regular enemies are on the game screen*/
 		_enemyManager->update();
 		linkEnemyShotAndPlayer(); // keep updating all of the active enemy shots on Player class
 		linkPlayerEnemy(); // keep updating the player's location on EnemyManager class
@@ -69,10 +77,10 @@ void GameScene::update()
 void GameScene::draw() const
 {
 	_background->draw();
-	_board->draw();
+	//_board->draw();
 	_player->draw();
 	if (_enemyManager->getFlag()) {
-		if (!_boss->getBossShotStatus()) {
+		if (!_boss->getBossShotStatus() && _boss->getBossConversationStatus()) {
 			_conversation->draw();
 		}
 		if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
@@ -82,7 +90,7 @@ void GameScene::draw() const
 	else {
 		_enemyManager->draw();
 	}
-	//_board->draw();
+	_board->draw();
 
 }
 

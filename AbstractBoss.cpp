@@ -18,7 +18,8 @@ AbstractBoss::AbstractBoss() :
 	_ax(0), _ay(0),
 	_preX(0), _preY(0),
 	_bottom(false),
-	_canBossStartBullets(false),
+	_canBossStartBullets(false), _canBossCome(false),
+	_isBossTalking(true),
 	_shotIndex(0)
 {
 }
@@ -74,4 +75,70 @@ bool AbstractBoss::didBulletHitMe()
 		}
 	}
 	return true;
+}
+
+/* Input the destination and calculate velocity & acceleration for smooth move
+*  _moving should be false when using this function
+   @t time (num of frames) to spend for move
+   @xDest destination
+   @yDest destination */
+void AbstractBoss::inputDestinationAndTime(int t, float xDest, float yDest)
+{
+	float maxX, maxY;
+	_moveTime = t; // time to spend to get to the destination
+	_moveCounter = 0; // init moveCounter: if moveCounter == moveTime then stop moving
+	_moving = true;
+	maxX = _x - xDest; // distance to move
+	_v0x = 2 * maxX / t; // initial velocity x
+	_ax = 2 * maxX / (t * t); // acceleration
+	_preX = _x; // x coordinate before moving
+	maxY = _y - yDest; // distance to move
+	_v0y = 2 * maxY / t; // initial velocity y
+	_ay = 2 * maxY / (t * t); // acceleration
+	_preY = _y; // y coordinate before moving
+}
+
+/* Move boss icon based on calculation done by inputDestinationAndTime()
+   Always call inputDestinationAndTime() first */
+void AbstractBoss::moveBoss()
+{
+	_x = _preX - ((_v0x * _moveCounter) - 0.5 * _ax * _moveCounter * _moveCounter); // current x
+	_y = _preY - ((_v0y * _moveCounter) - 0.5 * _ay * _moveCounter * _moveCounter); // current y
+	_moveCounter++;
+	if (_moveCounter >= _moveTime) { // if spent specified time, stop moving
+		_moving = false;
+	}
+}
+
+/* Move boss icon around the base position. Make it look like floating in the air...
+   _moving should be false when using this function */
+void AbstractBoss::moveUpDown()
+{
+	if (_bottom) {
+		inputDestinationAndTime(95, Define::BOSSBASE_X, Define::BOSSBASE_Y);
+		_bottom = false;
+	}
+	else {
+		inputDestinationAndTime(95, Define::BOSSBASE_X, Define::BOSSBASE_Y + 50);
+		_bottom = true;
+	}
+	_moving = true;
+}
+
+/* When boss shot is ready, show the health meter. When drawing the health meter for the first time,
+   make it look like that the meter is going up until the max-health */
+void AbstractBoss::drawHealth() const
+{
+	int drawIndexMax = Define::INNER_W * 0.90 * _health / _healthMax;
+	int drawIndex = _counter * 5;
+	if (_counter * 5 > drawIndexMax) {
+		drawIndex = drawIndexMax;
+	}
+	else {
+		drawIndex = _counter * 5;
+	}
+	if (_healthMax == 0) { printfDx("enemy health error");return; }
+	for (int i = 0; i < drawIndex; i++) {
+		DrawGraph(10 + Define::IN_X + i, 2 + Define::IN_Y, Image::getIns()->getBossHealth(), FALSE);
+	}
 }

@@ -133,7 +133,7 @@ void EnemyManager::loadEnemyAndShots()
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
 	}
-	/*
+	
 	if (_count == 251) {
 		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
@@ -141,7 +141,7 @@ void EnemyManager::loadEnemyAndShots()
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
 	}
-
+	/*
 	if (_count == 301) {
 		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
@@ -190,7 +190,7 @@ void EnemyManager::loadEnemyAndShots()
 		_shotList.emplace_back(make_shared<Shot02>());
 	}
 	*/
-	if (_count == 250) {
+	if (_count == 300) {
 		_flag = true;
 	}
 

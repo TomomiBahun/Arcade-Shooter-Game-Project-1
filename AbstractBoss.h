@@ -12,19 +12,32 @@ public:
 	bool update() override;
 	int getShotIndex() { return _shotIndex; } // returns the current shotIndex
 	std::vector<Bullet>& getActiveBossBullet(int shotIndex);
+
+	/* getters & setters for Boss status*/
 	bool getBossShotStatus() { return _canBossStartBullets; } // returns boss shot status
 	bool getBossPresenceStatus() { return _canBossCome; } // return boss status (is boss on the game board?)
+	bool getBossConversationStatus() { return _isBossTalking; } // return boss conversation status
 	void setBossShotStatus(bool answer) { _canBossStartBullets = answer; _counter = 0; } // this is to set boss status at GameScene class
 	void setBossPresenceStatus(bool answer) { _canBossCome = answer; } // this is to set boss status at GameScene class
+	void setBossConversationStatus(bool answer) { _isBossTalking = answer; } // set conversation status
+
+	/* setters for receiving the player's status*/
 	void setPlayerX(float x) { _playerX = x; } // this receives player information from GameScene class
 	void setPlayerY(float y) { _playerY = y; } // this receives player inforamtion from GameScene class
 	void setPlayerPower(int power) { _playerPower = power; } // this receives player informaiont from GameScene class
 	void setPlayerShot(AbstractShot& shot); // receives Player's shot reference to do hit-check at Boss class
 
 protected:
+	/* functions to do hit-check and get related angles*/
 	float angleBossAndPlayer();
 	float angleBossAndDestination();
 	bool didBulletHitMe();
+
+	/* functions to control boss move and health*/
+	void inputDestinationAndTime(int t, float xDest, float yDest);
+	void moveBoss();
+	void moveUpDown(); // stay at the base potision, but keep moving
+	void drawHealth() const;
 
 	int _counter;
 	float _x, _y; // boss coordinate
@@ -52,9 +65,10 @@ protected:
 	/* attributes to control scenes*/
 	bool _canBossStartBullets; // when true, boss starts its bullets
 	bool _canBossCome; // when true, boss appears on the game board
+	bool _isBossTalking;
 
 	/* attributes to control boss shot */
-	std::vector<std::shared_ptr<AbstractBossShot>> shots;
+	std::vector<std::shared_ptr<AbstractBossShot>> shots; // holding boss shots
 	int _shotIndex; // index for different kinds of shots
 
 	/* attributes to keep player's info*/

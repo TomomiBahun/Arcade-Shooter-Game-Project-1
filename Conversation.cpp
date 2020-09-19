@@ -20,7 +20,7 @@ Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
 	reimuAndRan.push_back("Reimu: ?"); // seventh*/
 	reimuAndRan.push_back("Ran: I'm here to eliminate anybody that I see in this area.\n     No matter if it is ghosts, monster, or human!!"); // eighth
 
-	vector<int> zero = { NULL, NULL };
+	vector<int> zero = { NULL, NULL }; // dummy element. This won't be used.
 	vector<int> first = { Image::getIns()->getReimuAngry(), NULL };
 	/*vector<int> second = { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanNormal() };
 	vector<int> third = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };
@@ -29,7 +29,7 @@ Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
 	vector<int> sixth = { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanNormal() };
 	vector<int> seventh = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };*/
 	vector<int> eighth = { Image::getIns()->getReimuAngryLayered(), Image::getIns()->getRanConfident() };
-	imageReimuAndRan.push_back(zero);
+	imageReimuAndRan.push_back(zero); // dummy element. This won't be used
 	imageReimuAndRan.push_back(first);
 	/*imageReimuAndRan.push_back(second);
 	imageReimuAndRan.push_back(third);

@@ -173,6 +173,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerShot.cpp" />
     <ClCompile Include="RanShot01.cpp" />
+    <ClCompile Include="RanShot02.cpp" />
     <ClCompile Include="Round.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="Error.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Shot01.cpp" />
     <ClCompile Include="Shot02.cpp" />
     <ClCompile Include="Shot03.cpp" />
+    <ClCompile Include="SpellCardEffect.cpp" />
     <ClCompile Include="SystemMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="YakumoRan.cpp" />
@@ -211,6 +213,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="RanShot01.h" />
+    <ClInclude Include="RanShot02.h" />
     <ClInclude Include="Round.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Error.h" />
@@ -224,6 +227,7 @@
     <ClInclude Include="Shot02.h" />
     <ClInclude Include="Shot03.h" />
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="SpellCardEffect.h" />
     <ClInclude Include="SystemMain.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TitleScene.h" />
