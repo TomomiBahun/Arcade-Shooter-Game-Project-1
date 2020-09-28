@@ -17,6 +17,8 @@ public:
 	bool getBossShotStatus() { return _canBossStartBullets; } // returns boss shot status
 	bool getBossPresenceStatus() { return _canBossCome; } // return boss status (is boss on the game board?)
 	bool getBossConversationStatus() { return _isBossTalking; } // return boss conversation status
+	float getBossHealth() { return _health; }
+	float getBossHealthMax() { return _healthMax; }
 	void setBossShotStatus(bool answer) { _canBossStartBullets = answer; _counter = 0; } // this is to set boss status at GameScene class
 	void setBossPresenceStatus(bool answer) { _canBossCome = answer; } // this is to set boss status at GameScene class
 	void setBossConversationStatus(bool answer) { _isBossTalking = answer; } // set conversation status
@@ -37,8 +39,11 @@ protected:
 	void inputDestinationAndTime(int t, float xDest, float yDest);
 	void moveBoss();
 	void moveUpDown(); // stay at the base potision, but keep moving
+	bool updateCircle();
 	void drawHealth() const;
+	void drawCircle() const;
 
+	/* attributes to control moss in general*/
 	int _counter;
 	float _x, _y; // boss coordinate
 	float _w = 50.0f; // boss width
@@ -48,7 +53,8 @@ protected:
 	float _angle;
 	float _health;
 	float _healthMax;
-	int _direction;
+	bool _moveToLoc;
+	int _upDownCount;
 
 	/* attributes to calculate boss move*/
 	int _moveCounter; // progress(time) of one move
@@ -78,5 +84,10 @@ protected:
 
 	/* attributes to keep boss's info on other class*/
 	std::vector<Bullet> _activeBossBullets; // this is to pass all active boss bullets to Player class
+
+	/* attributes to control decorations */
+	float _circleAngle;
+	float _circleExpand;
+	int _shrinkOrEnlarge; // 0: Enlarge fast, 1: Enlarge slow, 2: shrink slow
 };
 

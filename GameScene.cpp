@@ -38,9 +38,11 @@ void GameScene::update()
 	/* while boss is on the game board (no regular enemies) */
 	if (_enemyManager->getFlag()) {
 		// keep setting new boss bullets... when conversation is over & boss's shot status is ON
-		if (!_conversation->update() && !_boss->getBossShotStatus()) {
-			_boss->setBossConversationStatus(false);
-			_boss->setBossShotStatus(true);
+		if (_boss->getBossHealth() == _boss->getBossHealthMax()) {
+			if (!_conversation->update() && !_boss->getBossShotStatus()) {
+				_boss->setBossConversationStatus(false);
+				_boss->setBossShotStatus(true);
+			}
 		}
 
 		// let the boss show up on the game screen... when conversation is at certain point

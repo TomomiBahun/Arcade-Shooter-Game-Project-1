@@ -11,7 +11,7 @@ AbstractBoss::AbstractBoss() :
 	_speed(0),
 	_angle(0),
 	_health(0), _healthMax(0),
-	_direction(0),
+	_moveToLoc(true), _upDownCount(0),
 	_moveCounter(0), _moveTime(0),
 	_moving(false),
 	_v0x(0), _v0y(0),
@@ -20,7 +20,8 @@ AbstractBoss::AbstractBoss() :
 	_bottom(false),
 	_canBossStartBullets(false), _canBossCome(false),
 	_isBossTalking(true),
-	_shotIndex(0)
+	_shotIndex(0),
+	_circleAngle(0.0), _circleExpand(0.0), _shrinkOrEnlarge(0)
 {
 }
 
@@ -29,6 +30,7 @@ bool AbstractBoss::update()
 	_counter++;
 	_x += cos(_angle) * _speed;
 	_y += sin(_angle) * _speed;
+
 	return true;
 }
 
@@ -102,9 +104,11 @@ void AbstractBoss::inputDestinationAndTime(int t, float xDest, float yDest)
    Always call inputDestinationAndTime() first */
 void AbstractBoss::moveBoss()
 {
-	_x = _preX - ((_v0x * _moveCounter) - 0.5 * _ax * _moveCounter * _moveCounter); // current x
-	_y = _preY - ((_v0y * _moveCounter) - 0.5 * _ay * _moveCounter * _moveCounter); // current y
-	_moveCounter++;
+	if (_moveCounter <= _moveTime) {
+		_x = _preX - ((_v0x * _moveCounter) - 0.5 * _ax * _moveCounter * _moveCounter); // current x
+		_y = _preY - ((_v0y * _moveCounter) - 0.5 * _ay * _moveCounter * _moveCounter); // current y
+		_moveCounter++;
+	}
 	if (_moveCounter >= _moveTime) { // if spent specified time, stop moving
 		_moving = false;
 	}
@@ -114,12 +118,13 @@ void AbstractBoss::moveBoss()
    _moving should be false when using this function */
 void AbstractBoss::moveUpDown()
 {
+
 	if (_bottom) {
-		inputDestinationAndTime(95, Define::BOSSBASE_X, Define::BOSSBASE_Y);
+		inputDestinationAndTime(70, _x, _y - 25);
 		_bottom = false;
 	}
 	else {
-		inputDestinationAndTime(95, Define::BOSSBASE_X, Define::BOSSBASE_Y + 50);
+		inputDestinationAndTime(70, _x, _y + 25);
 		_bottom = true;
 	}
 	_moving = true;
@@ -141,4 +146,51 @@ void AbstractBoss::drawHealth() const
 	for (int i = 0; i < drawIndex; i++) {
 		DrawGraph(10 + Define::IN_X + i, 2 + Define::IN_Y, Image::getIns()->getBossHealth(), FALSE);
 	}
+}
+
+bool AbstractBoss::updateCircle()
+{
+	/* Rotate background circle image*/
+	if (_circleAngle <= 2 * Define::PI) {
+		_circleAngle += (Define::PI / 180*2);
+	}
+	else {
+		_circleAngle = 0.0;
+	}
+
+	if (_canBossStartBullets) {
+		if (_shrinkOrEnlarge == 0) { // Enlarge the circle quickly... only when boss start bullets for the first time
+			if (_circleExpand < 1.5) {
+				_circleExpand += 0.02;
+			}
+			else {
+				_circleExpand = 1.5;
+				_shrinkOrEnlarge = 2;
+			}
+		}
+		else if (_shrinkOrEnlarge == 1) { // Enlarge the circle slowly...
+			if (_circleExpand < 1.5) {
+				_circleExpand += 0.002;
+			}
+			else {
+				_circleExpand = 1.5;
+				_shrinkOrEnlarge = 2;
+			}
+		}else{							// Shrink the circle slowly...
+			if (_circleExpand > 1.2) {
+				_circleExpand -= 0.002;
+			}
+			else {
+				_circleExpand = 1.2;
+				_shrinkOrEnlarge = 1;
+			}
+		}
+	}
+
+	return true;
+}
+
+void AbstractBoss::drawCircle() const
+{
+	DrawRotaGraphF(_x, _y, _circleExpand, _circleAngle, Image::getIns()->getCircle()[1], TRUE);
 }

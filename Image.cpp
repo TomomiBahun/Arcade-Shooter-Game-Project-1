@@ -39,6 +39,7 @@ Image::Image()
 	_bossHealth = myLoadGraph("../img/bossHealth.png");
 	_spellCardLeft = myLoadGraph("../img/SpellCardLeft.png");
 	_spellCardRight = myLoadGraph("../img/SpellCardRight.png");
+	myLoadDivGraph("../img/circle.png", 4, 2, 2, 256, 256, _circle);
 }
 
 void Image::release()

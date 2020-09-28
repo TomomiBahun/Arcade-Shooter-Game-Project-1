@@ -30,16 +30,20 @@ ImageBullet::ImageBullet()
 	_sizeList.push_back(new Size(29, 27)); // big ball
 	_sizeList.push_back(new Size(9, 17)); // sharp bullet
 	_sizeList.push_back(new Size(18, 20)); // fuda
+	_sizeList.push_back(new Size(13, 62)); // Reimu's Bullet
+
 	myLoadDivGraph("../img/shot_smallBall.png");
 	myLoadDivGraph("../img/shot_bigBall.png");
 	myLoadDivGraph("../img/shot_sharp.png");
 	myLoadDivGraph("../img/shot_fuda.png");
+	myLoadDivGraph("../img/ReimuBullet.png");
 
 	/* store range in vector*/
 	_range.push_back(4.5f * WEIGHT * ENLARGE); // small ball
 	_range.push_back(10.0f * WEIGHT * ENLARGE); // big ball
 	_range.push_back(4.5f * WEIGHT * ENLARGE); // sharp bullet
-	_range.push_back(4.5f * ENLARGE); // fuda - player's bullet
+	_range.push_back(4.5f * ENLARGE); // fuda
+	_range.push_back(6.0f * ENLARGE); // Reimu's Bullet
 }
 
 void ImageBullet::myLoadDivGraph(const char* fname)

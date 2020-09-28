@@ -15,5 +15,8 @@ private:
 	float _speed02;
 	int _bulletColor01;
 	int _bulletColor02;
+	float _angle;
+	int _randomNum;
+	bool _leftRight; // false: LEFT, true:RIGHT
 };
 

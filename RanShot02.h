@@ -12,9 +12,17 @@ public:
 private:
 	int _bulletType01;
 	int _bulletType02;
+	int _bulletType03;
+	int _bulletType04;
 	float _speed01;
 	float _speed02;
+	float _speed03;
+	float _speed04;
 	int _bulletColor01;
 	int _bulletColor02;
+	int _bulletColor03;
+	int _bulletColor04;
+	bool _bulletSwitch;
+	float _angle;
 };
 

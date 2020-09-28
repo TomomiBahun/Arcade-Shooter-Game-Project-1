@@ -21,7 +21,8 @@ public:
 		bigBall,
 		sharpBullet,
 		fuda,
-		eTypeNum,
+		reimuBullet,
+		eTypeNum
 	};
 
 	enum eBulletColor {
