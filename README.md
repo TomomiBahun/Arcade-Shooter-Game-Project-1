@@ -2,6 +2,7 @@
 
 This project is continued from Project 0. An improved design pattern is used in this project, specifically making use of object-oriented-design methods.
 Playable with a computer keyboard (move with direction keys, shot bullets with space key, enable slow-move mode with Left Shit key), but still in progress.
+Demo video is available here: https://www.youtube.com/watch?v=W5D-V89-eGE
 
 Genre: Shooter Game, Touhou, Touhou Danmakufu
 
