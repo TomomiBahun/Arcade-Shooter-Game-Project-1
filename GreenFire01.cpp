@@ -7,7 +7,7 @@ const float ENLARGE = 1.2; // when the enemy image shows up on the gameboard, it
 
 GreenFire01::GreenFire01(float x, float y) : AbstractEnemy(x, y)
 {
-	_speed = 2.0f;
+	_speed = 2.5f;
 	_angle = Define::PI / 2;
 	_range = 13.0 * ENLARGE;
 	_health = 3;
@@ -15,12 +15,18 @@ GreenFire01::GreenFire01(float x, float y) : AbstractEnemy(x, y)
 
 bool GreenFire01::update()
 {
-	if (_angle < Define::PI && _counter % 50 == 0) {
-		_angle += Define::PI / 10;
+	if (_counter < 100) {
+		_angle = Define::PI / 2;
+		_x += cos(_angle) * _speed;
+		_y += sin(_angle) * _speed;
 	}
+	else if (105 <= _counter) {
+		_angle = Define::PI * 3 / 4;
+		_x += cos(_angle) * _speed;
+		_y += sin(_angle) * _speed;
+	}
+
 	_counter++;
-	_x += cos(_angle) * _speed;
-	_y += sin(_angle) * _speed;
 	return isInside();
 }
 

@@ -9,10 +9,10 @@ void PlayerShot::setBullets(float x, float y, float angle, int power)
 	if (_counter % 7 == 0) {
 		int k = isBulletAvailable();
 		shot[k].setFlag(1);
-		shot[k].setBullet(x + 25, y - 8, _speed, angle, power, _bulletType, _bulletColor);
-		int h = isBulletAvailable();
+		shot[k].setBullet(x, y, _speed, angle, power, _bulletType, _bulletColor);
+		/*int h = isBulletAvailable();
 		shot[h].setFlag(1);
-		shot[h].setBullet(x - 25, y - 8, _speed, angle, power, _bulletType, _bulletColor);
+		shot[h].setBullet(x - 25, y - 8, _speed, angle, power, _bulletType, _bulletColor);*/
 	}
 }
 

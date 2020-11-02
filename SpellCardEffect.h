@@ -1,14 +1,15 @@
 #pragma once
+#include "Task.h"
 #include <array>
 #include <memory>
 
-class SpellCardEffect
+class SpellCardEffect : public Task
 {
 public:
 	SpellCardEffect();
 	virtual ~SpellCardEffect() = default;
-	bool update();
-	void draw() const;
+	bool update() override;
+	void draw() const override;
 	bool getEffectStatus() { return _isEffectOn; }
 
 private:
@@ -26,5 +27,7 @@ private:
 	bool _isEffectOn;
 	std::array<std::shared_ptr<backProp>, IMG_TOTAL> _spellCardLeft;
 	std::array<std::shared_ptr<backProp>, IMG_TOTAL> _spellCardRight;
+
+	void init();
 };
 

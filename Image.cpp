@@ -13,7 +13,8 @@ Image::Image()
 	_backRan = myLoadGraph("../img/back_Ran.png");
 
 	/* images player & Enemy icon*/
-	myLoadDivGraph("../img/reimu.png", 6, 2, 3, 50, 50, _player);
+	//myLoadDivGraph("../img/reimu.png", 6, 2, 3, 50, 50, _player); //  old image of Reimu. Delete when game is complete
+	myLoadDivGraph("../img/Reimudot.png", 15, 5, 3, 32, 49, _reimu);
 	myLoadDivGraph("../img/fire_blue.png", 4, 4, 1, 63, 50, _blueFire);
 	myLoadDivGraph("../img/fire_green.png", 4, 4, 1, 63, 50, _greenFire);
 	_yakumoRan = myLoadGraph("../img/YakumoRan.png");

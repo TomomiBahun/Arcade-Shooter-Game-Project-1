@@ -33,8 +33,9 @@ private:
 	float _x, _y; // player coordinate
 	float _w = 50.0f; // player width
 	float _h = 50.0f; // player width;
-	float _range = 7.5f; // player range
+	float _range = 10.5f; // player range
 	int direction;
+	int directionCount;
 	int _power;
 	int _health;
 	int _noHitTimer;

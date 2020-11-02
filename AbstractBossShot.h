@@ -30,4 +30,5 @@ protected:
 	float _moveY;
 	int _moveTime;
 	float _angle;
+	float _angle02;
 };

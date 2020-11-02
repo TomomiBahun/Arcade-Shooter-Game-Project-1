@@ -4,6 +4,8 @@
 #include "Image.h"
 #include "RanShot01.h"
 #include "RanShot02.h"
+#include "RanShot03.h"
+#include "RanShot04.h"
 #include "HitCheck.h"
 
 const static float SHRINK = 0.25;
@@ -19,12 +21,16 @@ YakumoRan::YakumoRan() : isShot01Ready(false), isShot02Ready(false), isReadyForE
 	_shotIndex = 0;
 	_upDownCount = 100;
 
-	_healthRange.push_back({ 1000, 971 });
-	_healthRange.push_back({ 970, 870 });
+	_healthRange.push_back({ 1000, 851 });
+	_healthRange.push_back({ 850, 701 });
+	_healthRange.push_back({ 700, 551 });
+	_healthRange.push_back({ 550, 401 });
 
 	/* Ran's shots*/
-	shots.push_back(std::make_shared<RanShot01>());
-	shots.push_back(std::make_shared<RanShot02>());
+	shots.push_back(std::make_shared<RanShot04>()); // 0: normal
+	shots.push_back(std::make_shared<RanShot02>()); // 1: spell card
+	shots.push_back(std::make_shared<RanShot03>()); // 2: normal
+	shots.push_back(std::make_shared<RanShot04>()); // 3: spell card
 }
 
 bool YakumoRan::update()
@@ -35,8 +41,8 @@ bool YakumoRan::update()
 	/* controls boss's move during conversation*/
 	if (_counter == 0) {
 		inputDestinationAndTime(70, Define::BOSSBASE_X, Define::BOSSBASE_Y);
-		//preShot = true;
 	}
+
 	if (_counter > 80 && _moving == false && _health == _healthMax) {
 		moveUpDown();
 	}
@@ -52,11 +58,23 @@ bool YakumoRan::update()
 
 	/* controls effects between normal bullets and spell cards*/
 	if (isReadyForEffect) {
-		effect.update();
-		if (!effect.getEffectStatus()) {
-			isReadyForEffect = false;
-			_canBossStartBullets = true;
-			_shotIndex++;
+		if (_shotIndex % 2 == 0 || _shotIndex == 0) { // Activate effect when normal bullet -> spell card
+			effect.update();
+			_bossBackOn = true;
+			if (!effect.getEffectStatus()) {
+				isReadyForEffect = false;
+				_canBossStartBullets = true;
+				_shotIndex++;
+			}
+		}
+		else { // No effect when spell card -> normal bullet
+			nullEffect.update();
+			_bossBackOn = false;
+			if (!nullEffect.getEffectStatus()) {
+				isReadyForEffect = false;
+				_canBossStartBullets = true;
+				_shotIndex++;
+			}
 		}
 	}
 
@@ -117,22 +135,20 @@ bool YakumoRan::updateShot()
 			}
 		}
 
-		// move to the specified location and move up&down ... _movePattern == 3
-		/*if (shots[_shotIndex]->getMovePattern() == 3) {
-			if (_moving == false && _moveToLoc == true) {
-				inputDestinationAndTime(shots[_shotIndex]->getMoveTime(), shots[_shotIndex]->getMoveX(), shots[_shotIndex]->getMoveY());
-				_upDownCount = _moveTime;
+		// do nothing at one location
+		if (shots[_shotIndex]->getMovePattern() == 3) {
+			// do nothing...
+		}
+
+		// move to the specified location and move up&down ... _movePattern == 4
+		if (shots[_shotIndex]->getMovePattern() == 4) {
+			int random = GetRand(4);
+			int moveX = 100 + 100 * random;
+			int moveY = Define::BOSSBASE_Y;
+			if (_moving == false) {
+				inputDestinationAndTime(150, moveX, moveY);
 			}
-			if (_moving == false && _moveToLoc == false && _upDownCount != 0) {
-				moveUpDown();
-			}
-			if (_upDownCount == 0) {
-				_moveToLoc = true;
-			}
-			else {
-				_upDownCount--;
-			}
-		}*/
+		}
 	}
 
 	return true;

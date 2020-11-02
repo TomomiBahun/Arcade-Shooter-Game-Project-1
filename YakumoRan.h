@@ -2,6 +2,7 @@
 #include "AbstractBoss.h"
 #include "AbstractBossShot.h"
 #include "SpellCardEffect.h"
+#include "NullEffect.h"
 
 class YakumoRan : public AbstractBoss
 {
@@ -19,5 +20,6 @@ private:
 	bool isShot02Ready;
 	std::vector<std::vector<int>> _healthRange; // holds upper limit and lower limit of health when boss is at specific bullet
 	SpellCardEffect effect;
+	NullEffect nullEffect;
 };
 

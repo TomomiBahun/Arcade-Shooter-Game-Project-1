@@ -129,6 +129,15 @@
     <ClCompile Include="RanShot02.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NullEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RanShot03.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RanShot04.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SystemMain.h">
@@ -252,6 +261,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RanShot02.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NullEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RanShot03.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RanShot04.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

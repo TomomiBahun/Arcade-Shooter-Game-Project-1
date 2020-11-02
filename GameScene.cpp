@@ -27,6 +27,7 @@ GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter)
 
 void GameScene::update()
 {
+	_background->setBossBackStatus(_boss->getBossBackStatus());
 	_background->update();
 	_player->update();
 	linkPlayerShotAndEnemy(); // keep updating all of the active player shots on EnemyManager class
@@ -79,7 +80,6 @@ void GameScene::update()
 void GameScene::draw() const
 {
 	_background->draw();
-	//_board->draw();
 	_player->draw();
 	if (_enemyManager->getFlag()) {
 		if (!_boss->getBossShotStatus() && _boss->getBossConversationStatus()) {

@@ -7,6 +7,7 @@ using namespace std;
 
 const static int IMG_WIDTH = 896;
 const static float SCROLL_SPEED = 4.5f;
+const static int MAX_BRIGHTNESS = 255;
 
 SpellCardEffect::SpellCardEffect() : 
 	_counter(0),
@@ -77,7 +78,11 @@ bool SpellCardEffect::update()
 	/* control the location of Boss image */
 	if (_counter > 121 ) {
 		_isEffectOn = false;
+		init();
 		return false;
+	}
+	else {
+		_isEffectOn = true;
 	}
 
 	return true;
@@ -87,6 +92,8 @@ void SpellCardEffect::draw() const
 {
 	// draw within just the movable area
 	SetDrawArea(0, 0, Define::OUTER_W, Define::OUTER_H);
+
+	/* draw SpellCard letter Effect*/
 	if (_spellCardLeft.size() > 1 && _spellCardRight.size() > 1) {
 		for (int i = 0; i < IMG_TOTAL; i++) {
 			if (_brightnessLetter != 0) {
@@ -105,6 +112,14 @@ void SpellCardEffect::draw() const
 	}
 
 	/* set the brightness back to normal*/
-	SetDrawBright(255, 255, 255);
+	SetDrawBright(MAX_BRIGHTNESS, MAX_BRIGHTNESS, MAX_BRIGHTNESS);
 	SetDrawArea(0, 0, Define::WIN_W, Define::WIN_H);
+}
+
+void SpellCardEffect::init()
+{
+	_counter = 0;
+	_brightnessLetter = 0;
+	_brightnessBoss = 0;
+	_y = Define::CENTER_Y + 100;
 }

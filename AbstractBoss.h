@@ -19,6 +19,7 @@ public:
 	bool getBossConversationStatus() { return _isBossTalking; } // return boss conversation status
 	float getBossHealth() { return _health; }
 	float getBossHealthMax() { return _healthMax; }
+	bool getBossBackStatus() { return _bossBackOn; }
 	void setBossShotStatus(bool answer) { _canBossStartBullets = answer; _counter = 0; } // this is to set boss status at GameScene class
 	void setBossPresenceStatus(bool answer) { _canBossCome = answer; } // this is to set boss status at GameScene class
 	void setBossConversationStatus(bool answer) { _isBossTalking = answer; } // set conversation status
@@ -89,5 +90,6 @@ protected:
 	float _circleAngle;
 	float _circleExpand;
 	int _shrinkOrEnlarge; // 0: Enlarge fast, 1: Enlarge slow, 2: shrink slow
+	int _bossBackOn;
 };
 

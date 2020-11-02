@@ -2,11 +2,11 @@
 #include "AbstractBossShot.h"
 #include "ImageBullet.h"
 
-class RanShot01 : public AbstractBossShot
+class RanShot03 : public AbstractBossShot
 {
 public:
-	RanShot01();
-	virtual ~RanShot01() = default;
+	RanShot03();
+	virtual ~RanShot03() = default;
 	void setBullets(float x, float y, float angle, int power) override;
 
 private:
@@ -15,7 +15,6 @@ private:
 	float _speed02;
 	int _bulletColor01;
 	int _bulletColor02;
-	float _angle;
 	int _randomNum;
 	bool _leftRight; // false: LEFT, true:RIGHT
 };

@@ -20,7 +20,8 @@ public:
 	int const getBackRan() { return _backRan; }
 
 	/* images player & Enemy icon*/
-	const int* getPlayer() const { return _player; }
+	// const int* getPlayer() const { return _player; } old image of Reimu. Delete when game is complete
+	const int* getReimu() const { return _reimu; }
 	const int* getBlueFire() const { return _blueFire; }
 	const int* getGreenFire() const { return _greenFire; }
 	int const getYakumoRan() { return _yakumoRan; }
@@ -64,7 +65,8 @@ private:
 	int _backRan;
 
 	/* images player & Enemy icon*/
-	int _player[6];
+	//int _player[6]; // old image of Reimu. Delete when game is complete
+	int _reimu[15];
 	int _blueFire[4];
 	int _greenFire[4];
 	int _yakumoRan;
