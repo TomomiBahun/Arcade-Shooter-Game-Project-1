@@ -3,6 +3,7 @@
 #include <DxLib.h>
 #include "Background.h"
 #include "HitCheck.h"
+#include "Sound.h"
 
 #define ERR(str) Error::finish(str, __FUNCTION__, __LINE__);
 
@@ -33,10 +34,10 @@ void GameScene::update()
 	linkPlayerShotAndEnemy(); // keep updating all of the active player shots on EnemyManager class
 	linkPlayerBoard();
 
-	/* when enemyManager's flag is off, normal enemies shoudl be on the game board
-	   otherwise, the stage boss should be on the game board*/
+	/* when enemyManager's flag is off, normal enemies shoudl be on the screen
+	   otherwise, the stage boss should be on the screen*/
 
-	/* while boss is on the game board (no regular enemies) */
+	/* while boss is on the screen (no regular enemies) */
 	if (_enemyManager->getFlag()) {
 		// keep setting new boss bullets... when conversation is over & boss's shot status is ON
 		if (_boss->getBossHealth() == _boss->getBossHealthMax()) {
@@ -50,6 +51,11 @@ void GameScene::update()
 		if (_conversation->getBoss()) {
 			linkPlayerShotAndBoss();
 			_boss->update(); // boss need to keep moving regardless of the scene
+			if (!CheckSoundMem(Sound::getIns()->getStage1BossSound())) {
+				StopSoundMem(Sound::getIns()->getStage1Sound());
+				PlaySoundMem(Sound::getIns()->getStage1BossSound(), DX_PLAYTYPE_LOOP);
+				//isSoundOn = true;
+			}
 		}
 
 		// Keep updating shots and location info on boss and player classes... when boss's shot status is ON
@@ -62,12 +68,19 @@ void GameScene::update()
 		_enemyManager->update();
 		linkEnemyShotAndPlayer(); // keep updating all of the active enemy shots on Player class
 		linkPlayerEnemy(); // keep updating the player's location on EnemyManager class
+		if (!CheckSoundMem(Sound::getIns()->getStage1Sound())) {
+			PlaySoundMem(Sound::getIns()->getStage1Sound(), DX_PLAYTYPE_LOOP);
+		}
 	}
 
 	_board->update();
 
 	/* if the player died, give 2 options (1)go back to the title (2)play again */
 	if (_player->getHealth() < 0) {
+		// Stop Music
+		StopSoundMem(Sound::getIns()->getStage1Sound());
+		StopSoundMem(Sound::getIns()->getStage1BossSound());
+
 		Parameter parameter;
 		//parameter.set(GameScene::ParameterTagLevel, Define::eLevel::normal);
 		const bool stackClear = false;

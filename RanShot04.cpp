@@ -1,6 +1,5 @@
 #include "RanShot04.h"
 #include "Define.h"
-#include <DxLib.h>
 #include <math.h>
 
 RanShot04::RanShot04() :
@@ -31,7 +30,7 @@ void RanShot04::setBullets(float x, float y, float angle, int power)
 		shot[k].setFlag(1);
 		shot[k].setBullet(x, y, _speed02, angle, power, _bulletType02, _bulletColor02);
 		_baseShot = k;
-
+		PlaySoundMem(Sound::getIns()->getEnemyShotSound(), DX_PLAYTYPE_BACK);
 	}
 
 	if (shot[_baseShot].getY() > Define::CENTER_Y + 50 && _baseShot > -1) {
@@ -41,6 +40,7 @@ void RanShot04::setBullets(float x, float y, float angle, int power)
 		shot[_baseShot].initBullet();
 		_baseCounter = _counter;
 		_baseShot = -1;
+		PlaySoundMem(Sound::getIns()->getBulletEffectSound(), DX_PLAYTYPE_BACK);
 	}
 
 	if (_counter < 400) {

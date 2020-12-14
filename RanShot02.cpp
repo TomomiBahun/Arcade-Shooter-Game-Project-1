@@ -46,6 +46,7 @@ void RanShot02::setBullets(float x, float y, float angle, int power)
 				shot[k].setFlag(1);
 				shot[k].setBullet(x - 8.0, y, _speed02, angle + Define::PI / 2 + (Define::PI / 2 * i), power, _bulletType02, _bulletColor02);
 			}
+			PlaySoundMem(Sound::getIns()->getEnemyShotSound(), DX_PLAYTYPE_BACK);
 		}
 	}
 
@@ -64,15 +65,18 @@ void RanShot02::setBullets(float x, float y, float angle, int power)
 				shot[k].setFlag(1);
 				shot[k].setBullet(x, y, _speed04, angle + (Define::PI / 12 * i), power, _bulletType04, _bulletColor04);
 			}
+			PlaySoundMem(Sound::getIns()->getEnemyShotSound(), DX_PLAYTYPE_BACK);
 		}
 	}
 
 	// switch bullet type every 150 frames
 	if (_counter % 600 == 0 && !_bulletSwitch) {
 		_bulletSwitch = true;
+		PlaySoundMem(Sound::getIns()->getBulletEffectSound(), DX_PLAYTYPE_BACK);
 	}
 	else if (_counter % 600 == 0 && _bulletSwitch) {
 		_bulletSwitch = false;
 		_angle = 0.0;
+		PlaySoundMem(Sound::getIns()->getBulletEffectSound(), DX_PLAYTYPE_BACK);
 	}
 }

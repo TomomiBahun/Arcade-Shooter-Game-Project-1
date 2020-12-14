@@ -6,11 +6,13 @@
 #include "RanShot02.h"
 #include "RanShot03.h"
 #include "RanShot04.h"
+#include "Ranshot05.h"
+#include "RanShot06.h"
 #include "HitCheck.h"
 
 const static float SHRINK = 0.25;
 
-YakumoRan::YakumoRan() : isShot01Ready(false), isShot02Ready(false), isReadyForEffect(false)
+YakumoRan::YakumoRan() : isReadyForEffect(false), shouldRanHide(false)
 {
 	/* properties of Ran */
 	_speed = 3.0f;
@@ -21,16 +23,21 @@ YakumoRan::YakumoRan() : isShot01Ready(false), isShot02Ready(false), isReadyForE
 	_shotIndex = 0;
 	_upDownCount = 100;
 
-	_healthRange.push_back({ 1000, 851 });
-	_healthRange.push_back({ 850, 701 });
-	_healthRange.push_back({ 700, 551 });
-	_healthRange.push_back({ 550, 401 });
+	_healthRange.push_back({ 1000, 836 });
+	_healthRange.push_back({ 835, 671 });
+	_healthRange.push_back({ 670, 506 });
+	_healthRange.push_back({ 505, 341 });
+	_healthRange.push_back({ 340, 176 });
+	_healthRange.push_back({ 175, 0 });
 
 	/* Ran's shots*/
-	shots.push_back(std::make_shared<RanShot04>()); // 0: normal
+	shots.push_back(std::make_shared<RanShot06>()); // 0: normal
 	shots.push_back(std::make_shared<RanShot02>()); // 1: spell card
 	shots.push_back(std::make_shared<RanShot03>()); // 2: normal
 	shots.push_back(std::make_shared<RanShot04>()); // 3: spell card
+	shots.push_back(std::make_shared<RanShot05>()); // 4: normal
+	shots.push_back(std::make_shared<RanShot06>()); // 5: spell card
+
 }
 
 bool YakumoRan::update()
@@ -45,6 +52,14 @@ bool YakumoRan::update()
 
 	if (_counter > 80 && _moving == false && _health == _healthMax) {
 		moveUpDown();
+	}
+
+	// controls boss's move for RanShot06
+	if (_shotIndex == 0) {
+		shouldRanHide = shots[_shotIndex]->getShouldRanHide();
+	}
+	else {
+		shouldRanHide = false;
 	}
 
 	/* Use certain bullets when boss has specific amount of health left*/
@@ -89,8 +104,10 @@ bool YakumoRan::update()
 
 void YakumoRan::draw() const
 {
-	const int handle = Image::getIns()->getYakumoRan();
-	DrawRotaGraphF(_x, _y, SHRINK, 0.0, handle, TRUE);
+	if (!shouldRanHide) {
+		const int handle = Image::getIns()->getYakumoRan();
+		DrawRotaGraphF(_x, _y, SHRINK, 0.0, handle, TRUE);
+	}
 
 	// when conversation is done, start drawing health and keep it there
 	if (_isBossTalking == false) {
@@ -111,7 +128,9 @@ void YakumoRan::draw() const
 bool YakumoRan::updateShot()
 {
 	if (_canBossStartBullets) { // when shot is going on
-		didBulletHitMe();
+		if (!shouldRanHide) {
+			didBulletHitMe();
+		}
 		/* keep setting up bullets during boss's shots*/
 		shots[_shotIndex]->update();
 		shots[_shotIndex]->setBullets(_x, _y, angleBossAndPlayer(), 10);
@@ -147,6 +166,15 @@ bool YakumoRan::updateShot()
 			int moveY = Define::BOSSBASE_Y;
 			if (_moving == false) {
 				inputDestinationAndTime(150, moveX, moveY);
+			}
+		}
+
+		// move to player's coordinate
+		if (shots[_shotIndex]->getMovePattern() == 5) {
+			_moving = false; // cancel the previoud pattern
+			if (shouldRanHide == true) {
+				_x = _playerX;
+				_y = _playerY;
 			}
 		}
 	}

@@ -138,6 +138,18 @@
     <ClCompile Include="RanShot04.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RanShot05.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RanShot06.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EndConversation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SystemMain.h">
@@ -270,6 +282,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RanShot04.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RanShot05.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RanShot06.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EndConversation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "SpellCardEffect.h"
 #include "Image.h"
 #include "Define.h"
+#include "Sound.h"
 #include <DxLib.h>
 
 using namespace std;
@@ -85,6 +86,10 @@ bool SpellCardEffect::update()
 		_isEffectOn = true;
 	}
 
+	if (!CheckSoundMem(Sound::getIns()->getSpellCardEffectSound())) {
+		PlaySoundMem(Sound::getIns()->getSpellCardEffectSound(), DX_PLAYTYPE_BACK);
+	}
+
 	return true;
 }
 
@@ -122,4 +127,5 @@ void SpellCardEffect::init()
 	_brightnessLetter = 0;
 	_brightnessBoss = 0;
 	_y = Define::CENTER_Y + 100;
+	StopSoundMem(Sound::getIns()->getSpellCardEffectSound());
 }

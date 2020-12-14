@@ -1,6 +1,8 @@
 #pragma once
 #include "Task.h"
 #include "Bullet.h"
+#include "Sound.h"
+#include <DxLib.h>
 #include <memory>
 #include <vector>
 
@@ -21,6 +23,7 @@ public:
 	float getMoveX() { return _moveX; }
 	float getMoveY(){ return _moveY; }
 	int getMoveTime() { return _moveTime; }
+	bool getShouldRanHide() { return _hideRan; }
 
 
 protected:
@@ -31,4 +34,5 @@ protected:
 	int _moveTime;
 	float _angle;
 	float _angle02;
+	bool _hideRan; // when Ran shouldn't be drawn, use this
 };

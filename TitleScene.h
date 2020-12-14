@@ -8,4 +8,7 @@ public:
 	virtual ~TitleScene() = default;
 	void update() override;
 	void draw() const override;
+
+private:
+	bool isSoundOn = false;
 };

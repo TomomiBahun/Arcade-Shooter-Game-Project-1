@@ -35,6 +35,7 @@ void RanShot01::setBullets(float x, float y, float angle, int power)
 			shot[k].setFlag(1);
 			shot[k].setBullet(x, y, _speed02, angle + (Define::PI / 12 * i), power, _bulletType, _bulletColor02);
 		}
+		PlaySoundMem(Sound::getIns()->getEnemyShotSound(), DX_PLAYTYPE_BACK);
 	}
 
 	// if counter becomes over 360, reset it

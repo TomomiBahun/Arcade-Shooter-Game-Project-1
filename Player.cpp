@@ -4,6 +4,7 @@
 #include "Image.h"
 #include "Define.h"
 #include "ImageBullet.h"
+#include "Sound.h"
 
 using namespace std;
 
@@ -228,6 +229,7 @@ bool Player::didBulletHitMe()
 			if (_x < _activeEnemyBullets[i].getX() && _activeEnemyBullets[i].getX() < _x + 100) {
 				if (HitCheck::getIns()->didBulletHitPlayer(_activeEnemyBullets, i, _x, _y, _range)) {
 					_health -= 10; // all enemy bullets power are 10
+					PlaySoundMem(Sound::getIns()->getGetHitSound(), DX_PLAYTYPE_BACK); // play hit sound
 					return true;
 				}
 			}
@@ -239,6 +241,7 @@ bool Player::didBulletHitMe()
 			if (_x < _activeBossBullets[i].getX() && _activeBossBullets[i].getX() < _x + 100) {
 				if (HitCheck::getIns()->didBulletHitPlayer(_activeBossBullets, i, _x, _y, _range)) {
 					_health -= 10; // all enemy bullets power are 10
+					PlaySoundMem(Sound::getIns()->getGetHitSound(), DX_PLAYTYPE_BACK); // play hit sound
 					return true;
 				}
 			}

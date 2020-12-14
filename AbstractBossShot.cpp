@@ -1,6 +1,6 @@
 #include "AbstractBossShot.h"
 
-AbstractBossShot::AbstractBossShot() : _counter(0)
+AbstractBossShot::AbstractBossShot() : _counter(0), _hideRan(false)
 {
 	// instantiate Bullet objects with (0, 0) coordinates, 0 speed, 0 angle and 0 flag. Properties will be updated.
 	for (int i = 0; i < MAX_BULLETS; i++) {

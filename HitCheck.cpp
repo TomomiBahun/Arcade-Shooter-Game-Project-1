@@ -1,5 +1,7 @@
 #include "HitCheck.h"
 #include "Define.h"
+#include "Sound.h"
+#include <DxLib.h>
 #include <math.h>
 #include <algorithm>
 
@@ -25,8 +27,9 @@ bool HitCheck::didBulletHitPlayer(std::vector<Bullet> shot, int n, float x, floa
 			for (int i = 0; i < shot[n].getSpeed() / hit_range; i++) {
 				px = pre_x - x;
 				py = pre_y - y;
-				if (px * px + py + py < hit_range * hit_range)
+				if (px * px + py + py < hit_range * hit_range) {
 					return true; // hit
+				}
 				pre_x += cos(shot[n].getAngle()) * hit_range;
 				pre_y += sin(shot[n].getAngle()) * hit_range;
 			}
@@ -62,6 +65,8 @@ bool HitCheck::didBulletHitEnemy(Bullet shot[], int n, float x, float y, float r
 				py = pre_y - y;
 				if (px * px + py + py < hit_range * hit_range) {
 					playerShotHitIndex.push_back(n); // if hit, save the index number
+					PlaySoundMem(Sound::getIns()->getHitSound(), DX_PLAYTYPE_BACK);
+					//PlaySoundFile("../sound/hit.wav", DX_PLAYTYPE_BACK);
 					return true; // hit
 				}
 				pre_x += cos(shot[n].getAngle()) * hit_range;
@@ -70,6 +75,8 @@ bool HitCheck::didBulletHitEnemy(Bullet shot[], int n, float x, float y, float r
 		}
 		if (hit_x * hit_x + hit_y * hit_y < hit_range * hit_range) {
 			playerShotHitIndex.push_back(n); // if hit, save the index number
+			PlaySoundMem(Sound::getIns()->getHitSound(), DX_PLAYTYPE_BACK);
+			//PlaySoundFile("../sound/hit.wav", DX_PLAYTYPE_BACK);
 			return true; // hit
 		}
 	}

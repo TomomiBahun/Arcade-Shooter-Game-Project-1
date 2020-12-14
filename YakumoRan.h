@@ -16,8 +16,7 @@ public:
 private:
 	//bool preShot;
 	bool isReadyForEffect;
-	bool isShot01Ready;
-	bool isShot02Ready;
+	bool shouldRanHide;
 	std::vector<std::vector<int>> _healthRange; // holds upper limit and lower limit of health when boss is at specific bullet
 	SpellCardEffect effect;
 	NullEffect nullEffect;

@@ -45,4 +45,7 @@ private:
 	void linkEnemyShotAndPlayer(); // pass Enemies' shots info to Player class
 	void linkBossShotAndPlayer(); // pass Boss's shots info to Player class
 	void linkPlayerBoard(); // pass player's health and power info to GameBoard class so that health and power can be shown
+
+	// control Sound
+	bool isSoundOn = false;
 };

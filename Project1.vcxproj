@@ -160,6 +160,7 @@
     <ClCompile Include="AbstractEnemy.cpp" />
     <ClCompile Include="BlueFire.cpp" />
     <ClCompile Include="Conversation.cpp" />
+    <ClCompile Include="EndConversation.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -177,6 +178,8 @@
     <ClCompile Include="RanShot02.cpp" />
     <ClCompile Include="RanShot03.cpp" />
     <ClCompile Include="RanShot04.cpp" />
+    <ClCompile Include="RanShot05.cpp" />
+    <ClCompile Include="RanShot06.cpp" />
     <ClCompile Include="Round.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="Error.cpp" />
@@ -188,6 +191,7 @@
     <ClCompile Include="Shot01.cpp" />
     <ClCompile Include="Shot02.cpp" />
     <ClCompile Include="Shot03.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpellCardEffect.cpp" />
     <ClCompile Include="SystemMain.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -203,6 +207,7 @@
     <ClInclude Include="AbstractEnemy.h" />
     <ClInclude Include="BlueFire.h" />
     <ClInclude Include="Conversation.h" />
+    <ClInclude Include="EndConversation.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameScene.h" />
@@ -220,6 +225,8 @@
     <ClInclude Include="RanShot02.h" />
     <ClInclude Include="RanShot03.h" />
     <ClInclude Include="RanShot04.h" />
+    <ClInclude Include="RanShot05.h" />
+    <ClInclude Include="RanShot06.h" />
     <ClInclude Include="Round.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Error.h" />
@@ -233,6 +240,7 @@
     <ClInclude Include="Shot02.h" />
     <ClInclude Include="Shot03.h" />
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="SpellCardEffect.h" />
     <ClInclude Include="SystemMain.h" />
     <ClInclude Include="Task.h" />

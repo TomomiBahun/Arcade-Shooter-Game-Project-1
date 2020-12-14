@@ -12,5 +12,6 @@ void Shot01::setBullets(float x, float y, float angle, int power)
 		int k = isBulletAvailable();
 		shot[k].setFlag(1);
 		shot[k].setBullet(x, y, _speed, angle, power, _bulletType, _bulletColor);
+		PlaySoundMem(Sound::getIns()->getEnemyShotSound(), DX_PLAYTYPE_BACK);
 	}
 }

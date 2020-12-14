@@ -1,6 +1,8 @@
 #pragma once
 #include "Task.h"
 #include "Bullet.h"
+#include "Sound.h"
+#include <DxLib.h>
 #include <memory>
 #include <vector>
 
