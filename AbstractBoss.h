@@ -23,6 +23,7 @@ public:
 	void setBossShotStatus(bool answer) { _canBossStartBullets = answer; _counter = 0; } // this is to set boss status at GameScene class
 	void setBossPresenceStatus(bool answer) { _canBossCome = answer; } // this is to set boss status at GameScene class
 	void setBossConversationStatus(bool answer) { _isBossTalking = answer; } // set conversation status
+	bool getIsStageVer() { return _isStageOver; }
 
 	/* setters for receiving the player's status*/
 	void setPlayerX(float x) { _playerX = x; } // this receives player information from GameScene class
@@ -73,6 +74,7 @@ protected:
 	bool _canBossStartBullets; // when true, boss starts its bullets
 	bool _canBossCome; // when true, boss appears on the game board
 	bool _isBossTalking;
+	bool _isStageOver; // When true, player beats the boss
 
 	/* attributes to control boss shot */
 	std::vector<std::shared_ptr<AbstractBossShot>> shots; // holding boss shots

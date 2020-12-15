@@ -24,6 +24,7 @@ GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter)
 	_enemyManager = make_shared<EnemyManager>();
 	_boss = make_shared<YakumoRan>();
 	_conversation = make_shared<Conversation>();
+	_endConversation = make_shared<EndConversation>();
 }
 
 void GameScene::update()
@@ -34,34 +35,42 @@ void GameScene::update()
 	linkPlayerShotAndEnemy(); // keep updating all of the active player shots on EnemyManager class
 	linkPlayerBoard();
 
-	/* when enemyManager's flag is off, normal enemies shoudl be on the screen
+	/* when enemyManager's flag is off, normal enemies should be on the screen
 	   otherwise, the stage boss should be on the screen*/
 
 	/* while boss is on the screen (no regular enemies) */
 	if (_enemyManager->getFlag()) {
-		// keep setting new boss bullets... when conversation is over & boss's shot status is ON
-		if (_boss->getBossHealth() == _boss->getBossHealthMax()) {
-			if (!_conversation->update() && !_boss->getBossShotStatus()) {
-				_boss->setBossConversationStatus(false);
-				_boss->setBossShotStatus(true);
+
+		if (!_boss->getIsStageVer()) {
+			// keep setting new boss bullets... when conversation is over & boss's shot status is ON
+			if (_boss->getBossHealth() == _boss->getBossHealthMax()) {
+				if (!_conversation->update() && !_boss->getBossShotStatus()) {
+					_boss->setBossConversationStatus(false);
+					_boss->setBossShotStatus(true);
+				}
+			}
+
+			// let the boss show up on the game screen... when conversation is at certain point
+			if (_conversation->getBoss()) {
+				linkPlayerShotAndBoss();
+				_boss->update(); // boss need to keep moving regardless of the scene
+				if (!CheckSoundMem(Sound::getIns()->getStage1BossSound())) {
+					StopSoundMem(Sound::getIns()->getStage1Sound());
+					PlaySoundMem(Sound::getIns()->getStage1BossSound(), DX_PLAYTYPE_LOOP);
+					//isSoundOn = true;
+				}
+			}
+
+			// Keep updating shots and location info on boss and player classes... when boss's shot status is ON
+			if (_boss->getBossShotStatus()) {
+				linkBossShotAndPlayer();
+				linkPlayerBoss();
 			}
 		}
-
-		// let the boss show up on the game screen... when conversation is at certain point
-		if (_conversation->getBoss()) {
-			linkPlayerShotAndBoss();
-			_boss->update(); // boss need to keep moving regardless of the scene
-			if (!CheckSoundMem(Sound::getIns()->getStage1BossSound())) {
-				StopSoundMem(Sound::getIns()->getStage1Sound());
-				PlaySoundMem(Sound::getIns()->getStage1BossSound(), DX_PLAYTYPE_LOOP);
-				//isSoundOn = true;
+		else { // when player beats the stage boss
+			if (!_endConversation->update()) {
+				// finish the stage and go back to the menu screen
 			}
-		}
-
-		// Keep updating shots and location info on boss and player classes... when boss's shot status is ON
-		if (_boss->getBossShotStatus()) {
-			linkBossShotAndPlayer();
-			linkPlayerBoss();
 		}
 	}
 	else { /* while regular enemies are on the game screen*/
@@ -95,11 +104,16 @@ void GameScene::draw() const
 	_background->draw();
 	_player->draw();
 	if (_enemyManager->getFlag()) {
-		if (!_boss->getBossShotStatus() && _boss->getBossConversationStatus()) {
-			_conversation->draw();
+		if (!_boss->getIsStageVer()) {
+			if (!_boss->getBossShotStatus() && _boss->getBossConversationStatus()) {
+				_conversation->draw();
+			}
+			if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
+				_boss->draw();
+			}
 		}
-		if (_conversation->getBoss()) { // when conversation is at a certain point, let the boss come in game board
-			_boss->draw();
+		else {
+			_endConversation->draw();
 		}
 	}
 	else {

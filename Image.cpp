@@ -41,6 +41,7 @@ Image::Image()
 	_spellCardLeft = myLoadGraph("../img/SpellCardLeft.png");
 	_spellCardRight = myLoadGraph("../img/SpellCardRight.png");
 	myLoadDivGraph("../img/circle.png", 4, 2, 2, 256, 256, _circle);
+	_leaf = myLoadGraph("../img/leaf.png");
 }
 
 void Image::release()

@@ -8,6 +8,7 @@
 #include "YakumoRan.h"
 #include "Conversation.h"
 #include "SpellCardEffect.h"
+#include "EndConversation.h"
 
 class GameScene : public AbstructScene
 {
@@ -36,6 +37,7 @@ private:
 	std::shared_ptr<EnemyManager> _enemyManager;
 	std::shared_ptr<AbstractBoss> _boss;
 	std::shared_ptr<Conversation> _conversation;
+	std::shared_ptr<EndConversation> _endConversation;
 	SpellCardEffect spellCardEffect;
 
 	void linkPlayerEnemy(); // pass player's location and power info to EnemyManager class

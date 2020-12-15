@@ -18,7 +18,7 @@ Player::Player() :
 	_x(Define::CENTER_X),
 	_y(Define::CENTER_Y + 500),
 	direction(0), directionCount(0),
-	_power(1),
+	_power(20),
 	_health(50),
 	_noHitTimer(0)
 {

@@ -10,6 +10,8 @@ Sound::Sound() {
 	ChangeVolumeSoundMem(90, _bulletEffect);
 	_spellCardEffect = myLoadSound("../sound/spellCard_nc3469.wav");
 	ChangeVolumeSoundMem(90, _spellCardEffect);
+	_bossDefeat = myLoadSound("../sound/boss_defeat.wav");
+	ChangeVolumeSoundMem(90, _bossDefeat);
 	_getHit = myLoadSound("../sound/getHit_nc130654.wav");
 	ChangeVolumeSoundMem(50, _getHit);
 	_title = myLoadSound("../sound/title_nc133919.mp3");
