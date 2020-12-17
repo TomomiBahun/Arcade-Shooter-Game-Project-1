@@ -15,6 +15,7 @@ public:
 	int const getEnemyShotSound() { return _enemyShot; }
 	int const getBulletEffectSound() { return _bulletEffect; }
 	int const getSpellCardEffectSound() { return _spellCardEffect; }
+	int const getBossDefeatSound() { return _bossDefeat; }
 	int const getGetHitSound() { return _getHit; }
 	int const getTitleSound() { return _title; }
 	int const getStage1Sound() { return _stage1; }
@@ -29,6 +30,7 @@ private:
 	int _enemyShot;
 	int _bulletEffect;
 	int _spellCardEffect;
+	int _bossDefeat;
 	int _getHit;
 	int _title;
 	int _stage1;

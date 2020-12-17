@@ -18,20 +18,20 @@ YakumoRan::YakumoRan() : isReadyForEffect(false), shouldRanHide(false)
 	_speed = 3.0f;
 	_angle = 0;
 	_range = 180.0 * SHRINK; //Ran icon's radius is 180 pixels
-	_healthMax = 1000.0;
+	_healthMax = 1300.0;
 	_health = _healthMax;
 	_shotIndex = 0;
 	_upDownCount = 100;
 
-	_healthRange.push_back({ 1000, 836 });
-	_healthRange.push_back({ 835, 671 });
-	_healthRange.push_back({ 670, 506 });
-	_healthRange.push_back({ 505, 341 });
-	_healthRange.push_back({ 340, 176 });
-	_healthRange.push_back({ 175, 0 });
+	_healthRange.push_back({ 1300, 1136 }); // 165
+	_healthRange.push_back({ 1135, 851 }); // 284
+	_healthRange.push_back({ 850, 686 }); // 165
+	_healthRange.push_back({ 685, 406 }); // 280
+	_healthRange.push_back({ 405, 241 }); // 165
+	_healthRange.push_back({ 240, 0 });
 
 	/* Ran's shots*/
-	shots.push_back(std::make_shared<RanShot06>()); // 0: normal
+	shots.push_back(std::make_shared<RanShot01>()); // 0: normal
 	shots.push_back(std::make_shared<RanShot02>()); // 1: spell card
 	shots.push_back(std::make_shared<RanShot03>()); // 2: normal
 	shots.push_back(std::make_shared<RanShot04>()); // 3: spell card
@@ -55,7 +55,7 @@ bool YakumoRan::update()
 	}
 
 	// controls boss's move for RanShot06
-	if (_shotIndex == 0) {
+	if (_shotIndex == 5) {
 		shouldRanHide = shots[_shotIndex]->getShouldRanHide();
 	}
 	else {
@@ -93,12 +93,32 @@ bool YakumoRan::update()
 		}
 	}
 
+	// When boss's health reaches 0
+	if (_health < 1) {
+		// immediately after player beats the boss, give the boss's location to the defeatEffect class
+		if (_canBossStartBullets) {
+			bossDefeatEffect.setBossX(_x);
+			bossDefeatEffect.setBossY(_y);
+		}
+
+		// when player beats the boss, stop adding new bullets and play an effect
+		_canBossStartBullets = false; // stop Boss bullets and hide circle image
+		shouldRanHide = true; // hide Ran's image from the screen
+		_moving = false; // stop moving Ran's image
+		bossDefeatEffect.update();
+
+		// after playing an effect, end the stage
+		if (bossDefeatEffect.getFlashCount() > 40 && bossDefeatEffect.getFlashFlag() == false) {
+			_isStageOver = true; // ends the stage
+		}
+	}
+
 	/* when _moving, still in process to move to the destination */
 	if (_moving) {
 		moveBoss();
 	}
 	_counter++;
-	updateCircle();
+	updateCircle(); // update the circle (decoration around the boss image)
 	return true;
 }
 
@@ -121,6 +141,10 @@ void YakumoRan::draw() const
 
 	if (isReadyForEffect) {
 		effect.draw();
+	}
+
+	if (bossDefeatEffect.getFlashFlag()) {
+		bossDefeatEffect.draw();
 	}
 }
 

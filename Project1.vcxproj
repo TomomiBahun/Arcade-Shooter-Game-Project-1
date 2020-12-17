@@ -159,8 +159,10 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="AbstractEnemy.cpp" />
     <ClCompile Include="BlueFire.cpp" />
+    <ClCompile Include="BossDefeatEffect.cpp" />
     <ClCompile Include="Conversation.cpp" />
     <ClCompile Include="EndConversation.cpp" />
+    <ClCompile Include="EndStageEffect.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -194,6 +196,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpellCardEffect.cpp" />
     <ClCompile Include="SystemMain.cpp" />
+    <ClCompile Include="TitleMenu.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="YakumoRan.cpp" />
   </ItemGroup>
@@ -206,8 +209,10 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="AbstractEnemy.h" />
     <ClInclude Include="BlueFire.h" />
+    <ClInclude Include="BossDefeatEffect.h" />
     <ClInclude Include="Conversation.h" />
     <ClInclude Include="EndConversation.h" />
+    <ClInclude Include="EndStageEffect.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameBoard.h" />
     <ClInclude Include="GameScene.h" />
@@ -244,6 +249,7 @@
     <ClInclude Include="SpellCardEffect.h" />
     <ClInclude Include="SystemMain.h" />
     <ClInclude Include="Task.h" />
+    <ClInclude Include="TitleMenu.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="YakumoRan.h" />
   </ItemGroup>

@@ -19,7 +19,7 @@ AbstractBoss::AbstractBoss() :
 	_preX(0), _preY(0),
 	_bottom(false),
 	_canBossStartBullets(false), _canBossCome(false),
-	_isBossTalking(true),
+	_isBossTalking(true), _isStageOver(false),
 	_shotIndex(0),
 	_circleAngle(0.0), _circleExpand(0.0), _shrinkOrEnlarge(0), _bossBackOn(false)
 {

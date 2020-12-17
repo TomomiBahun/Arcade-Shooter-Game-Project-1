@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
 #include "Define.h"
+#include "Image.h"
 #include "BlueFire.h"
 #include "GreenFire01.h"
 #include "GreenFire02.h"
@@ -11,8 +12,10 @@
 
 using namespace std;
 
+const static int MAX_BRIGHTNESS = 255;
+
 /* This class holds each enemy object in the list */
-EnemyManager::EnemyManager() : _count(0), _flag(false)
+EnemyManager::EnemyManager() : _count(0), _flag(false), _titleBrightness(0), _titleCount(0)
 {
 }
 
@@ -54,6 +57,25 @@ bool EnemyManager::update()
      		_continueShotList[i]->update();
 	}
 
+	/* update the stage title brightness*/
+	if (600 < _count && _count < 900) {
+		_titleCount++;
+		if (600 < _count && _count < 700) { // 600<_count<700 logo appears
+			_titleBrightness += 3;
+			if (_titleBrightness > 255) {
+				_titleBrightness = 255;
+			}
+		}
+		else if (700 <= _count && _count < 800) { // 700<=_count<800 logo stays
+
+		}else{ // 800<=_count<850 logo dissapears
+			_titleBrightness -= 3;
+			if (_titleBrightness < 0) {
+				_titleBrightness = 0;
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -70,6 +92,15 @@ void EnemyManager::draw() const
 	for (const auto shot : _continueShotList) {
 		shot->draw();
 	}
+
+	// draw stage title
+	if (600 < _count && _count < 900) {
+		SetDrawBright(_titleBrightness, _titleBrightness, _titleBrightness);
+		DrawRotaGraph(Define::CENTER_X - 100, Define::CENTER_Y, 0.9, 0.0, Image::getIns()->getStage1(), TRUE); // draw "Stage1"
+		DrawRotaGraph(Define::CENTER_X + 100 + (_titleCount*0.1), Define::CENTER_Y + 60, 0.7, 0.0, Image::getIns()->getStage1Title(), TRUE); // draw "Location"
+		SetDrawBright(MAX_BRIGHTNESS, MAX_BRIGHTNESS, MAX_BRIGHTNESS);
+	}
+
 }
 
 /* get all of the active bullets */
@@ -133,7 +164,7 @@ void EnemyManager::loadEnemyAndShots()
 		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 250, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
 	}
-	/*
+	
 	if (_count == 241) { // 2
 		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 150, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
@@ -204,17 +235,17 @@ void EnemyManager::loadEnemyAndShots()
 
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 250, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
-	}*/
+	}
 
 
-	/*if (_count == 700) {
+	if (_count == 700) {
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 150, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
 
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 250, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot01>());
-	}*/
-	/*
+	}
+	
 	if (_count == 800) {
 		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot03>());
@@ -246,8 +277,8 @@ void EnemyManager::loadEnemyAndShots()
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot02>());
 	}
-	*/
-	if (_count == 300) {
+	
+	if (_count == 1400) {
 		_flag = true;
 	}
 

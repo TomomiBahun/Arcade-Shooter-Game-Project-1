@@ -13,6 +13,9 @@ public:
 	/* image for Title and Option*/
 	int const getTitle() { return _title; }
 	int const getOptionScene() { return _optionScene; }
+	int const getStageClear() { return _stageClear; }
+	int const getStage1() { return _stage1; }
+	int const getStage1Title() { return _stage1Title; }
 
 	/* images for game board*/
 	int const getGameBoard() { return _board; }
@@ -31,11 +34,18 @@ public:
 	int const getReimuNormalLayered() { return _reimuNormalLayered; }
 	int const getReimuAngry() { return _reimuAngry; }
 	int const getReimuAngryLayered() { return _reimuAngryLayered; }
+	int const getReimuSmile() { return _reimuSmile; }
+	int const getReimuSmileLayered() { return _reimuSmileLayered; }
+	int const getReimuCreepy() { return _reimuCreepy; }
+	int const getReimuCreepyLayered() { return _reimuCreepyLayered; }
+	int const getReimuConfused() { return _reimuConfused; }
 
 	int const getRanNormal() { return _ranNormal; }
 	int const getRanNormalLayered() { return _ranNormalLayered; }
 	int const getRanTired() { return _ranTired; }
 	int const getRanTiredLayered() { return _ranTiredLayered; }
+	int const getRanCrying() { return _ranCrying; }
+	int const getRanCryingLayered() { return _ranCryingLayered; }
 	int const getRanConfident() { return _ranConfident; }
 
 	/* Decorative images*/
@@ -49,6 +59,7 @@ public:
 	int const getSpellCardLeft() { return _spellCardLeft; }
 	int const getSpellCardRight() { return _spellCardRight; }
 	const int* getCircle() { return _circle; }
+	int const getLeaf() { return _leaf; }
 
 private:
 	int myLoadGraph(const char*);
@@ -58,6 +69,9 @@ private:
 	/* image for Title and Option*/
 	int _title;
 	int _optionScene;
+	int _stageClear;
+	int _stage1;
+	int _stage1Title;
 
 	/* images for game board*/
 	int _board;
@@ -76,10 +90,17 @@ private:
 	int _reimuNormalLayered;
 	int _reimuAngry;
 	int _reimuAngryLayered;
+	int _reimuSmile;
+	int _reimuSmileLayered;
+	int _reimuCreepy;
+	int _reimuCreepyLayered;
+	int _reimuConfused;
 	int _ranNormal;
 	int _ranNormalLayered;
 	int _ranTired;
 	int _ranTiredLayered;
+	int _ranCrying;
+	int _ranCryingLayered;
 	int _ranConfident;
 
 	/* Decorative images*/
@@ -93,5 +114,6 @@ private:
 	int _spellCardLeft;
 	int _spellCardRight;
 	int _circle[4];
+	int _leaf;
 };
 
