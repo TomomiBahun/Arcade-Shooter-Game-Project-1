@@ -18,25 +18,25 @@ YakumoRan::YakumoRan() : isReadyForEffect(false), shouldRanHide(false)
 	_speed = 3.0f;
 	_angle = 0;
 	_range = 180.0 * SHRINK; //Ran icon's radius is 180 pixels
-	_healthMax = 1000.0;
+	_healthMax = 1300.0;
 	_health = _healthMax;
 	_shotIndex = 0;
 	_upDownCount = 100;
 
-	_healthRange.push_back({ 1000, 0 });
-	//_healthRange.push_back({ 835, 671 });
-	//_healthRange.push_back({ 670, 506 });
-	//_healthRange.push_back({ 505, 341 });
-	//_healthRange.push_back({ 340, 176 });
-	//_healthRange.push_back({ 175, 0 });
+	_healthRange.push_back({ 1300, 1136 }); // 165
+	_healthRange.push_back({ 1135, 851 }); // 284
+	_healthRange.push_back({ 850, 686 }); // 165
+	_healthRange.push_back({ 685, 406 }); // 280
+	_healthRange.push_back({ 405, 241 }); // 165
+	_healthRange.push_back({ 240, 0 });
 
 	/* Ran's shots*/
-	shots.push_back(std::make_shared<RanShot06>()); // 0: normal
-	//shots.push_back(std::make_shared<RanShot02>()); // 1: spell card
-	//shots.push_back(std::make_shared<RanShot03>()); // 2: normal
-	//shots.push_back(std::make_shared<RanShot04>()); // 3: spell card
-	//shots.push_back(std::make_shared<RanShot05>()); // 4: normal
-	//shots.push_back(std::make_shared<RanShot06>()); // 5: spell card
+	shots.push_back(std::make_shared<RanShot01>()); // 0: normal
+	shots.push_back(std::make_shared<RanShot02>()); // 1: spell card
+	shots.push_back(std::make_shared<RanShot03>()); // 2: normal
+	shots.push_back(std::make_shared<RanShot04>()); // 3: spell card
+	shots.push_back(std::make_shared<RanShot05>()); // 4: normal
+	shots.push_back(std::make_shared<RanShot06>()); // 5: spell card
 
 }
 

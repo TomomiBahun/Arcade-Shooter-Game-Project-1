@@ -33,9 +33,16 @@ public:
 private:
 	bool _flag; // when true, boss should appear on the game board
 	int _count;
+
+	// title properties
+	int _titleBrightness;
+	int _titleCount;
+
+	// player properties
 	float _playerX, _playerY;
 	int _playerPower;
 	AbstractShot* playerShot; // receives player's shot to do hit-check at EnemyManager class
+
 	std::vector<Bullet> _activeEnemyBullets; // this is to pass all active enemy bullets to Player class
 	std::vector<std::shared_ptr<AbstractEnemy>> _list; // enemy's list
 	std::vector<std::shared_ptr<AbstractShot>> _shotList; // alive enemy's shot list

@@ -14,7 +14,7 @@ Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
 	reimuAndRan.push_back("Reimu: Too many ghosts! Where are they coming from?"); // first
 	reimuAndRan.push_back("Ran Yakumo: Oh, hi Reimu"); // second
 	reimuAndRan.push_back("Reimu: What are you doing here?"); // third
-	/*reimuAndRan.push_back("Ran: I am investigating this area for Lady Yukari.\n     She wants to know where ghosts are coming from.\n     I guess you are here for the same reason..."); // forth
+	reimuAndRan.push_back("Ran: I am investigating this area for Lady Yukari.\n     She wants to know where ghosts are coming from.\n     I guess you are here for the same reason..."); // forth
 	reimuAndRan.push_back("Reimu: There are so many ghosts around my shrine now!\n       It's impacting the shrine's business..."); // fifth
 	reimuAndRan.push_back("Ran: By the way, Lady Yukari gave me one more command..."); // sixth
 	reimuAndRan.push_back("Reimu: ?"); // seventh*/
@@ -24,19 +24,19 @@ Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
 	vector<int> first = { Image::getIns()->getReimuAngry(), NULL };
 	vector<int> second = { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanNormal() };
 	vector<int> third = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };
-	/*vector<int> forth= { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanTired() };
+	vector<int> forth= { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanTired() };
 	vector<int> fifth = { Image::getIns()->getReimuAngry(), Image::getIns()->getRanTiredLayered() };
 	vector<int> sixth = { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanNormal() };
-	vector<int> seventh = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };*/
+	vector<int> seventh = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };
 	vector<int> eighth = { Image::getIns()->getReimuAngryLayered(), Image::getIns()->getRanConfident() };
 	imageReimuAndRan.push_back(zero); // dummy element. This won't be used
 	imageReimuAndRan.push_back(first);
 	imageReimuAndRan.push_back(second);
 	imageReimuAndRan.push_back(third);
-	/*imageReimuAndRan.push_back(forth);
+	imageReimuAndRan.push_back(forth);
 	imageReimuAndRan.push_back(fifth);
 	imageReimuAndRan.push_back(sixth);
-	imageReimuAndRan.push_back(seventh);*/
+	imageReimuAndRan.push_back(seventh);
 	imageReimuAndRan.push_back(eighth);
 }
 

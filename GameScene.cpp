@@ -2,6 +2,7 @@
 #include "Error.h"
 #include <DxLib.h>
 #include "Background.h"
+#include "keyboard.h"
 #include "HitCheck.h"
 #include "Sound.h"
 
@@ -68,9 +69,7 @@ void GameScene::update()
 			}
 		}
 		else { // when player beats the stage boss
-			if (!_endConversation->update()) {
-				// finish the stage and go back to the menu screen
-			}
+			_endConversation->update();
 		}
 	}
 	else { /* while regular enemies are on the game screen*/
@@ -84,19 +83,30 @@ void GameScene::update()
 
 	_board->update();
 
-	/* if the player died, give 2 options (1)go back to the title (2)play again */
+	/* Scene Changes - the player dies & the player defeats the stage boss */
 	if (_player->getHealth() < 0) {
 		// Stop Music
 		StopSoundMem(Sound::getIns()->getStage1Sound());
 		StopSoundMem(Sound::getIns()->getStage1BossSound());
 
+		// if the player died, give 2 options (1)go back to the title (2)play again
 		Parameter parameter;
-		//parameter.set(GameScene::ParameterTagLevel, Define::eLevel::normal);
 		const bool stackClear = false;
-
-		// use the parameter that we set above to specify next scene
 		_implSceneChanged->onSceneChanged(eScene::Option, parameter, stackClear);
 	}
+	else if (_endConversation->getFlag()) {
+		// if the player hits the speficic key
+		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_N) == 1) {
+			// stop the sound first
+			StopSoundMem(Sound::getIns()->getStage1BossSound());
+
+			// go back to the title screen
+			Parameter parameter;
+			const bool stackClear = true;
+			_implSceneChanged->onSceneChanged(eScene::Title, parameter, stackClear);
+		}
+	}
+
 }
 
 void GameScene::draw() const
