@@ -1,7 +1,7 @@
 #include "Shot03.h"
 #include "Define.h"
 
-Shot03::Shot03() : _speed(3.0), _bulletType(1), _bulletColor(4)
+Shot03::Shot03() : _speed(6.0), _bulletType(1), _bulletColor(4)
 {
 	_angle = Define::PI / 2;
 }
@@ -15,5 +15,6 @@ void Shot03::setBullets(float x, float y, float angle, int power)
 		int k = isBulletAvailable();
 		shot[k].setFlag(1);
 		shot[k].setBullet(x, y, _speed, _angle, power, _bulletType, _bulletColor);
+		PlaySoundMem(Sound::getIns()->getEnemyShotSound(), DX_PLAYTYPE_BACK);
 	}
 }

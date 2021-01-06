@@ -12,10 +12,21 @@ public:
 
 	/* image for Title and Option*/
 	int const getTitle() { return _title; }
+	int const getTitleMenu() { return _titleMenu; }
 	int const getOptionScene() { return _optionScene; }
 	int const getStageClear() { return _stageClear; }
 	int const getStage1() { return _stage1; }
 	int const getStage1Title() { return _stage1Title; }
+	int const getGameStart() { return _gameStart; }
+	int const getExtraStart() { return _extraStart; }
+	int const getPractice() { return _practice; }
+	int const getQuit() { return _quit; }
+	int const getSelectFlower() { return _selectFlower; }
+	int const getCharacterMenu() { return _characterMenu; }
+	int const getReimuLarge() { return _reimuLarge; }
+	int const getMarisaLarge() { return _marisaLarge; }
+	int const getReimuDescription() { return _reimuDescription; }
+	int const getMarisaDescription() { return _marisaDescription; }
 
 	/* images for game board*/
 	int const getGameBoard() { return _board; }
@@ -68,10 +79,21 @@ private:
 	std::vector<int> _images;
 	/* image for Title and Option*/
 	int _title;
+	int _titleMenu;
 	int _optionScene;
 	int _stageClear;
 	int _stage1;
 	int _stage1Title;
+	int _gameStart;
+	int _extraStart;
+	int _practice;
+	int _quit;
+	int _selectFlower;
+	int _characterMenu;
+	int _reimuLarge;
+	int _marisaLarge;
+	int _reimuDescription;
+	int _marisaDescription;
 
 	/* images for game board*/
 	int _board;

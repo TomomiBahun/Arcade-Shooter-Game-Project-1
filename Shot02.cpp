@@ -16,5 +16,8 @@ void Shot02::setBullets(float x, float y, float angle, int power)
 		int p = isBulletAvailable();
 		shot[p].setFlag(1);
 		shot[p].setBullet(x, y, _speed, angle + Define::PI/10, power, _bulletType, _bulletColor);
+		int h = isBulletAvailable();
+		shot[h].setFlag(1);
+		shot[h].setBullet(x, y, _speed, angle, power, _bulletType, _bulletColor);
 	}
 }

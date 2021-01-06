@@ -103,7 +103,7 @@ void GameScene::update()
 			// go back to the title screen
 			Parameter parameter;
 			const bool stackClear = true;
-			_implSceneChanged->onSceneChanged(eScene::Title, parameter, stackClear);
+			_implSceneChanged->onSceneChanged(eScene::Menu, parameter, stackClear);
 		}
 	}
 

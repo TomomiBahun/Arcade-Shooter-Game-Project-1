@@ -1,6 +1,8 @@
 #include "Looper.h"
 #include "Error.h"
 #include "TitleScene.h"
+#include "TitleMenu.h"
+#include "CharacterMenu.h"
 #include "GameScene.h"
 #include "OptionScene.h"
 #include "keyboard.h"
@@ -45,11 +47,20 @@ void Looper::onSceneChanged(const eScene scene, const Parameter& parameter, cons
 	case Title:
 		_sceneStack.push(make_shared<TitleScene>(this, parameter));
 		break;
+	case Menu:
+		_sceneStack.push(make_shared<TitleMenu>(this, parameter));
+		break;
 	case Game:
 		_sceneStack.push(make_shared<GameScene>(this, parameter));
 		break;
+	case CharacterSelect:
+		_sceneStack.push(make_shared<CharacterMenu>(this, parameter));
+		break;
 	case Option:
 		_sceneStack.push(make_shared<OptionScene>(this, parameter));
+		break;
+	case Quit:
+		DxLib_End();
 		break;
 	default:
 		ERR("Nonexistent scene was called");

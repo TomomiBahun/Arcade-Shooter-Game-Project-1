@@ -10,6 +10,8 @@ public:
 	void draw() const override;
 
 private:
-	bool isSoundOn = false;
+	std::map<int, eScene> choices;
+	int choiceAt;
+	int flowerCounter;
 };
 

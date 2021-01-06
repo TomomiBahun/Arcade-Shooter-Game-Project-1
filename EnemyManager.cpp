@@ -250,13 +250,13 @@ void EnemyManager::loadEnemyAndShots()
 		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X - 100, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot03>());
 
-		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X + 100, Define::IN_Y));
-		_shotList.emplace_back(make_shared<Shot03>());
+		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot02>());
 	}
 
 	if (_count == 900) {
-		_list.emplace_back(make_shared<GreenFire01>(Define::CENTER_X + 200, Define::IN_Y));
-		_shotList.emplace_back(make_shared<Shot02>());
+		_list.emplace_back(make_shared<BlueFire>(Define::CENTER_X + 100, Define::IN_Y));
+		_shotList.emplace_back(make_shared<Shot03>());
 
 		_list.emplace_back(make_shared<GreenFire02>(Define::CENTER_X +50, Define::IN_Y));
 		_shotList.emplace_back(make_shared<Shot02>());
@@ -278,7 +278,7 @@ void EnemyManager::loadEnemyAndShots()
 		_shotList.emplace_back(make_shared<Shot02>());
 	}
 	
-	if (_count == 1400) {
+	if (_count == 1450) {
 		_flag = true;
 	}
 

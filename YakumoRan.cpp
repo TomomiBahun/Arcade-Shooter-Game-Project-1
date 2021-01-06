@@ -18,17 +18,17 @@ YakumoRan::YakumoRan() : isReadyForEffect(false), shouldRanHide(false)
 	_speed = 3.0f;
 	_angle = 0;
 	_range = 180.0 * SHRINK; //Ran icon's radius is 180 pixels
-	_healthMax = 1300.0;
+	_healthMax = 1200.0;
 	_health = _healthMax;
 	_shotIndex = 0;
 	_upDownCount = 100;
 
-	_healthRange.push_back({ 1300, 1136 }); // 165
-	_healthRange.push_back({ 1135, 851 }); // 284
-	_healthRange.push_back({ 850, 686 }); // 165
-	_healthRange.push_back({ 685, 406 }); // 280
-	_healthRange.push_back({ 405, 241 }); // 165
-	_healthRange.push_back({ 240, 0 });
+	_healthRange.push_back({ 1200, 1001 }); // 165
+	_healthRange.push_back({ 1000, 801 }); // 284
+	_healthRange.push_back({ 800, 601 }); // 165
+	_healthRange.push_back({ 600, 351 }); // 280
+	_healthRange.push_back({ 350, 151 }); // 165
+	_healthRange.push_back({ 150, 0 });
 
 	/* Ran's shots*/
 	shots.push_back(std::make_shared<RanShot01>()); // 0: normal

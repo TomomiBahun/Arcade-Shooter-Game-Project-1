@@ -5,10 +5,21 @@ Image::Image()
 {
 	/* image for Title and Option*/
 	_title = myLoadGraph("../img/temp_title.png");
+	_titleMenu = myLoadGraph("../img/titleMenu.png");
 	_optionScene = myLoadGraph("../img/optionScene.png");
 	_stageClear = myLoadGraph("../img/stageClear.png");
 	_stage1 = myLoadGraph("../img/stage1.png");
 	_stage1Title = myLoadGraph("../img/stageTitle.png");
+	_gameStart = myLoadGraph("../img/GameStart.png");
+	_extraStart = myLoadGraph("../img/ExtraStage.png");
+	_practice = myLoadGraph("../img/Practice.png");
+	_quit = myLoadGraph("../img/Quit.png");
+	_selectFlower = myLoadGraph("../img/flowerSelect.png");
+	_characterMenu = myLoadGraph("../img/characterMenu.png");
+	_reimuLarge = myLoadGraph("../img/Reimu_Large.png");
+	_marisaLarge = myLoadGraph("../img/Marisa_Large.png");
+	_reimuDescription = myLoadGraph("../img/Reimu_Description.png");
+	_marisaDescription = myLoadGraph("../img/Marisa_Description.png");
 
 	/* images for game board*/
 	_board = myLoadGraph("../img/board.png");

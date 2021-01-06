@@ -160,6 +160,7 @@
     <ClCompile Include="AbstractEnemy.cpp" />
     <ClCompile Include="BlueFire.cpp" />
     <ClCompile Include="BossDefeatEffect.cpp" />
+    <ClCompile Include="CharacterMenu.cpp" />
     <ClCompile Include="Conversation.cpp" />
     <ClCompile Include="EndConversation.cpp" />
     <ClCompile Include="EndStageEffect.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="AbstractEnemy.h" />
     <ClInclude Include="BlueFire.h" />
     <ClInclude Include="BossDefeatEffect.h" />
+    <ClInclude Include="CharacterMenu.h" />
     <ClInclude Include="Conversation.h" />
     <ClInclude Include="EndConversation.h" />
     <ClInclude Include="EndStageEffect.h" />

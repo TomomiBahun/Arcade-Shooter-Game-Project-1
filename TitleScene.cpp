@@ -31,11 +31,10 @@ void TitleScene::update()
 		// set the parameter (which level is it? should the stack be cleared?)
 		Parameter parameter;
 		parameter.set(GameScene::ParameterTagLevel, Define::eLevel::normal);
-		const bool stackClear = false;
+		const bool stackClear = true;
 
 		// use the parameter that we set above to specify next scene
-		_implSceneChanged->onSceneChanged(eScene::Game, parameter, stackClear);
-		StopSoundMem(Sound::getIns()->getTitleSound());
+		_implSceneChanged->onSceneChanged(eScene::Menu, parameter, stackClear);
 	}
 }
 
