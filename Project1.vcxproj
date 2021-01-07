@@ -183,6 +183,7 @@
     <ClCompile Include="RanShot04.cpp" />
     <ClCompile Include="RanShot05.cpp" />
     <ClCompile Include="RanShot06.cpp" />
+    <ClCompile Include="Reimu.cpp" />
     <ClCompile Include="Round.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="Error.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="RanShot04.h" />
     <ClInclude Include="RanShot05.h" />
     <ClInclude Include="RanShot06.h" />
+    <ClInclude Include="Reimu.h" />
     <ClInclude Include="Round.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Error.h" />

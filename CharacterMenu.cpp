@@ -46,14 +46,21 @@ void CharacterMenu::update()
 		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_NUMPADENTER) == 1) {
 			StopSoundMem(Sound::getIns()->getTitleSound());
 
-			// set the parameter (which level is it? should the stack be cleared?)
+			// set the parameter (which character? should the stack be cleared?)
 			Parameter parameter;
-			parameter.set(GameScene::ParameterTagLevel, Define::eLevel::normal);
+			parameter.set(GameScene::ParameterTagCharacter, Define::eCharacter::reimu);
 			const bool stackClear = false; // the next scene will be added to the stack
 
 			// use the parameter that we set above to specify next scene
 			_implSceneChanged->onSceneChanged(eScene::Game, parameter, stackClear);
 		}
+	}
+
+	// go back to the title menu when 'Q' is pressed
+	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Q) == 1) {
+		Parameter parameter;
+		const bool stackClear = false;
+		_implSceneChanged->onSceneChanged(eScene::Back, parameter, stackClear);
 	}
 
 	_counter++;

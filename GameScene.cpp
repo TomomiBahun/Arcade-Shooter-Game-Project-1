@@ -10,8 +10,8 @@
 
 using namespace std;
 
-const char* GameScene::ParameterTagsStage = "ParameterTagStage";
-const char* GameScene::ParameterTagLevel = "ParameterTagLevel";
+const char* GameScene::ParameterTagsStage = "ParameterTagStage"; // used when specifying stage
+const char* GameScene::ParameterTagCharacter = "ParameterTagCharacter"; // used when specifying character
 
 GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter) : AbstructScene(imply, parameter)
 {
@@ -20,12 +20,22 @@ GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter)
 		ERR("Nonexistent level");
 	}*/
 	_background = make_shared<Background>();
-	_player = make_shared<Player>();
+	//_player = make_shared<Player>();
 	_board = make_shared<GameBoard>();
 	_enemyManager = make_shared<EnemyManager>();
 	_boss = make_shared<YakumoRan>();
 	_conversation = make_shared<Conversation>();
 	_endConversation = make_shared<EndConversation>();
+
+	// use Reimu or Marisa depending on the Parameter
+	if (parameter.get(ParameterTagCharacter) == 1) {
+		_currentCharacter = 1;
+		_player = make_shared<Reimu>(6, 1, 10.5);
+	}
+	else {
+		//_currentCharacter = 2;
+		//player = make_shared<Marisa>(8, 2, ???);
+	}
 }
 
 void GameScene::update()
@@ -91,6 +101,7 @@ void GameScene::update()
 
 		// if the player died, give 2 options (1)go back to the title (2)play again
 		Parameter parameter;
+		parameter.set(GameScene::ParameterTagCharacter, _currentCharacter);
 		const bool stackClear = false;
 		_implSceneChanged->onSceneChanged(eScene::Option, parameter, stackClear);
 	}

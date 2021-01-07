@@ -9,12 +9,13 @@
 #include "Conversation.h"
 #include "SpellCardEffect.h"
 #include "EndConversation.h"
+#include "Reimu.h"
 
 class GameScene : public AbstructScene
 {
 public:
-	const static char* ParameterTagsStage;
-	const static char* ParameterTagLevel;
+	const static char* ParameterTagsStage; // used when specifying stage
+	const static char* ParameterTagCharacter; // used when specifying character
 
 	// constructor
 	GameScene(IOnSceneChangedListener* imply, const Parameter& parameter);
@@ -39,6 +40,7 @@ private:
 	std::shared_ptr<Conversation> _conversation;
 	std::shared_ptr<EndConversation> _endConversation;
 	SpellCardEffect spellCardEffect;
+	int _currentCharacter = 0;
 
 	void linkPlayerEnemy(); // pass player's location and power info to EnemyManager class
 	void linkPlayerBoss(); // pass player's location and power info to Boss class
