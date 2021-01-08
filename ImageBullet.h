@@ -22,6 +22,7 @@ public:
 		sharpBullet,
 		fuda,
 		reimuBullet,
+		marisaBullet,
 		eTypeNum
 	};
 

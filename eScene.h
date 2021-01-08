@@ -7,4 +7,5 @@ enum eScene {
 	CharacterSelect,
 	Option, // after the player died...
 	Quit,
+	Back,
 };

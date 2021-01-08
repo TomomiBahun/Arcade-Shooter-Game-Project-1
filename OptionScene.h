@@ -8,4 +8,7 @@ public:
 	virtual ~OptionScene() = default;
 	void update() override;
 	void draw() const override;
+
+private:
+	int character = 0;
 };

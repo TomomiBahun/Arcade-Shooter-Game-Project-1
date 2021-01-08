@@ -114,9 +114,6 @@
     <ClCompile Include="YakumoRan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Conversation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RanShot01.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
     <ClCompile Include="RanShot06.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EndConversation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EndStageEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -160,6 +154,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CharacterMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Reimu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Marisa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S1ReimuConversation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S1MarisaConversation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S1ReimuEndConversation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="S1MarisaEndConversation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -272,9 +284,6 @@
     <ClInclude Include="YakumoRan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Conversation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RanShot01.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -305,9 +314,6 @@
     <ClInclude Include="RanShot06.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EndConversation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EndStageEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -318,6 +324,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CharacterMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reimu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Marisa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="S1ReimuConversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="S1MarisaConversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractConversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractEndConversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="S1ReimuEndConversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="S1MarisaEndConversation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
