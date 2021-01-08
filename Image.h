@@ -36,28 +36,26 @@ public:
 	/* images player & Enemy icon*/
 	// const int* getPlayer() const { return _player; } old image of Reimu. Delete when game is complete
 	const int* getReimu() const { return _reimu; }
+	const int* getMarisa() const { return _marisa; }
 	const int* getBlueFire() const { return _blueFire; }
 	const int* getGreenFire() const { return _greenFire; }
 	int const getYakumoRan() { return _yakumoRan; }
 
 	/* images player& Enemy normal pic*/
 	int const getReimuNormal() { return _reimuNormal; }
-	int const getReimuNormalLayered() { return _reimuNormalLayered; }
 	int const getReimuAngry() { return _reimuAngry; }
-	int const getReimuAngryLayered() { return _reimuAngryLayered; }
 	int const getReimuSmile() { return _reimuSmile; }
-	int const getReimuSmileLayered() { return _reimuSmileLayered; }
 	int const getReimuCreepy() { return _reimuCreepy; }
-	int const getReimuCreepyLayered() { return _reimuCreepyLayered; }
 	int const getReimuConfused() { return _reimuConfused; }
 
 	int const getRanNormal() { return _ranNormal; }
-	int const getRanNormalLayered() { return _ranNormalLayered; }
 	int const getRanTired() { return _ranTired; }
-	int const getRanTiredLayered() { return _ranTiredLayered; }
 	int const getRanCrying() { return _ranCrying; }
-	int const getRanCryingLayered() { return _ranCryingLayered; }
 	int const getRanConfident() { return _ranConfident; }
+
+	int const getMarisaHappy() { return _marisaHappy; }
+	int const getMarisaSmile() { return _marisaSmile; }
+	int const getMarisaCreepy() { return _marisaCreepy; }
 
 	/* Decorative images*/
 	int const getHitBox(){ return _hitBox; }
@@ -103,27 +101,24 @@ private:
 	/* images player & Enemy icon*/
 	//int _player[6]; // old image of Reimu. Delete when game is complete
 	int _reimu[15];
+	int _marisa[15];
 	int _blueFire[4];
 	int _greenFire[4];
 	int _yakumoRan;
 
 	/* images player& Enemy normal pic*/
 	int _reimuNormal;
-	int _reimuNormalLayered;
 	int _reimuAngry;
-	int _reimuAngryLayered;
 	int _reimuSmile;
-	int _reimuSmileLayered;
 	int _reimuCreepy;
-	int _reimuCreepyLayered;
 	int _reimuConfused;
 	int _ranNormal;
-	int _ranNormalLayered;
 	int _ranTired;
-	int _ranTiredLayered;
 	int _ranCrying;
-	int _ranCryingLayered;
 	int _ranConfident;
+	int _marisaHappy;
+	int _marisaSmile;
+	int _marisaCreepy;
 
 	/* Decorative images*/
 	int _hitBox;

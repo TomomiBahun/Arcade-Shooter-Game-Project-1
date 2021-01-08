@@ -1,4 +1,4 @@
-#include "EndConversation.h"
+#include "S1ReimuEndConversation.h"
 #include "Image.h"
 #include "Define.h"
 #include "keyboard.h"
@@ -7,8 +7,10 @@
 using namespace std;
 
 const static float SHRINK = 0.5;
+const static int BRIGHTNESS_MIN = 130;
+const static int BRIGHTNESS_MAX = 255;
 
-EndConversation::EndConversation() : _index(0), _counter(0), _flag(false)
+S1ReimuEndConversation::S1ReimuEndConversation() : _index(0), _counter(0), _flag(false)
 {
 	reimuAndRan.push_back(""); // zero
 	reimuAndRan.push_back("Reimu: Your master must know what is going on.\n       Go get her now."); // first
@@ -19,11 +21,11 @@ EndConversation::EndConversation() : _index(0), _counter(0), _flag(false)
 	reimuAndRan.push_back(""); //sixth ... stage clear
 
 	vector<int> zero = { NULL, NULL }; // dummy element. This won't be used.
-	vector<int> first = { Image::getIns()->getReimuSmile(), Image::getIns()->getRanCryingLayered() };
-	vector<int> second = { Image::getIns()->getReimuSmileLayered(), Image::getIns()->getRanCrying() };
-	vector<int> third = { Image::getIns()->getReimuCreepy(), Image::getIns()->getRanCryingLayered() };
-	vector<int> forth= { Image::getIns()->getReimuCreepyLayered(), Image::getIns()->getRanTired() };
-	vector<int> fifth = { Image::getIns()->getReimuConfused(), Image::getIns()->getRanTiredLayered() };
+	vector<int> first = { Image::getIns()->getReimuSmile(), Image::getIns()->getRanCrying() };
+	vector<int> second = { Image::getIns()->getReimuSmile(), Image::getIns()->getRanCrying() };
+	vector<int> third = { Image::getIns()->getReimuCreepy(), Image::getIns()->getRanCrying() };
+	vector<int> forth= { Image::getIns()->getReimuCreepy(), Image::getIns()->getRanTired() };
+	vector<int> fifth = { Image::getIns()->getReimuConfused(), Image::getIns()->getRanTired() };
 	vector<int> sixth = { Image::getIns()->getStageClear(), NULL };
 	imageReimuAndRan.push_back(zero); // dummy element. This won't be used
 	imageReimuAndRan.push_back(first);
@@ -34,7 +36,7 @@ EndConversation::EndConversation() : _index(0), _counter(0), _flag(false)
 	imageReimuAndRan.push_back(sixth);
 }
 
-bool EndConversation::update()
+bool S1ReimuEndConversation::update()
 {
 	_counter++;
 	// start the conversation without checking keyboard input first
@@ -48,12 +50,24 @@ bool EndConversation::update()
 	return true; // if the conversation is still going, return true
 }
 
-void EndConversation::draw() const
+void S1ReimuEndConversation::draw() const
 {
 	if (_index < 6) {
 		/* draw Characters*/
-		DrawRotaGraphF(Define::IN_X + 100, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][0], TRUE);
-		DrawRotaGraphF(Define::INNER_W - 70, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][1], TRUE);
+
+		/* When index is even, Ran is speaking. When index is odd, Reimu is speaking */
+		if (_index % 2 == 0) { // When Ran is speaking, Reimu's image should be dimmed
+			SetDrawBright(BRIGHTNESS_MIN, BRIGHTNESS_MIN, BRIGHTNESS_MIN);
+			DrawRotaGraphF(Define::IN_X + 100, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][0], TRUE); // Reimu
+			SetDrawBright(BRIGHTNESS_MAX, BRIGHTNESS_MAX, BRIGHTNESS_MAX);
+			DrawRotaGraphF(Define::INNER_W - 70, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][1], TRUE); // Ran
+		}
+		else { // When Reimu is speaking, Ran's image should be dimmed
+			SetDrawBright(BRIGHTNESS_MIN, BRIGHTNESS_MIN, BRIGHTNESS_MIN);
+			DrawRotaGraphF(Define::INNER_W - 70, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][1], TRUE); // Ran
+			SetDrawBright(BRIGHTNESS_MAX, BRIGHTNESS_MAX, BRIGHTNESS_MAX);
+			DrawRotaGraphF(Define::IN_X + 100, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][0], TRUE); // Reimu
+		}
 
 		/* draw message box*/
 		DrawRotaGraphF(Define::CENTER_X, Define::CENTER_Y + 300, 1.0, 0, Image::getIns()->getMessagebox(), TRUE);

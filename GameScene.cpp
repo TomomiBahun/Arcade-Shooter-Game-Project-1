@@ -24,17 +24,19 @@ GameScene::GameScene(IOnSceneChangedListener* imply, const Parameter& parameter)
 	_board = make_shared<GameBoard>();
 	_enemyManager = make_shared<EnemyManager>();
 	_boss = make_shared<YakumoRan>();
-	_conversation = make_shared<Conversation>();
-	_endConversation = make_shared<EndConversation>();
 
 	// use Reimu or Marisa depending on the Parameter
 	if (parameter.get(ParameterTagCharacter) == 1) {
 		_currentCharacter = 1;
 		_player = make_shared<Reimu>(6, 1, 10.5);
+		_conversation = make_shared<S1ReimuConversation>();
+		_endConversation = make_shared<S1ReimuEndConversation>();
 	}
 	else {
-		//_currentCharacter = 2;
-		//player = make_shared<Marisa>(8, 2, ???);
+		_currentCharacter = 2;
+		_player = make_shared<Marisa>(8, 2, 11.0);
+		_conversation = make_shared<S1MarisaConversation>();
+		_endConversation = make_shared<S1MarisaEndConversation>();
 	}
 }
 

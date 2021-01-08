@@ -1,4 +1,8 @@
 #include "PlayerShot.h"
+#include "ImageBullet.h"
+
+const static int REIMU_POWER = 1;
+const static int MARISA_POWER = 2;
 
 PlayerShot::PlayerShot() : AbstractShot()
 {
@@ -6,13 +10,19 @@ PlayerShot::PlayerShot() : AbstractShot()
 
 void PlayerShot::setBullets(float x, float y, float angle, int power)
 {
-	if (_counter % 7 == 0) {
-		int k = isBulletAvailable();
-		shot[k].setFlag(1);
-		shot[k].setBullet(x, y, _speed, angle, power, _bulletType, _bulletColor);
-		/*int h = isBulletAvailable();
-		shot[h].setFlag(1);
-		shot[h].setBullet(x - 25, y - 8, _speed, angle, power, _bulletType, _bulletColor);*/
+	if (power == REIMU_POWER) {
+		if (_counter % 7 == 0) {
+			int k = isBulletAvailable();
+			shot[k].setFlag(1);
+			shot[k].setBullet(x, y, _speed, angle, power, ImageBullet::eBulletType::reimuBullet, 0);
+		}
+	}
+	else if (power == MARISA_POWER) {
+		if (_counter % 11 == 0) {
+			int k = isBulletAvailable();
+			shot[k].setFlag(1);
+			shot[k].setBullet(x, y, _speed, angle, power, ImageBullet::eBulletType::marisaBullet, 0);
+		}
 	}
 }
 

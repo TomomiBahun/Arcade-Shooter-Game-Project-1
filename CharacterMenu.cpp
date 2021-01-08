@@ -41,19 +41,21 @@ void CharacterMenu::update()
 	}
 
 	// go to the game screen when player choose a character
-	// currently Marisa is not available
-	if (_choiceAt == 0) {
-		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_NUMPADENTER) == 1) {
-			StopSoundMem(Sound::getIns()->getTitleSound());
+	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_NUMPADENTER) == 1) {
+		StopSoundMem(Sound::getIns()->getTitleSound());
 
-			// set the parameter (which character? should the stack be cleared?)
-			Parameter parameter;
+		// set the parameter (which character? should the stack be cleared?)
+		Parameter parameter;
+		if (_choiceAt == 0) {
 			parameter.set(GameScene::ParameterTagCharacter, Define::eCharacter::reimu);
-			const bool stackClear = false; // the next scene will be added to the stack
-
-			// use the parameter that we set above to specify next scene
-			_implSceneChanged->onSceneChanged(eScene::Game, parameter, stackClear);
 		}
+		else {
+			parameter.set(GameScene::ParameterTagCharacter, Define::eCharacter::marisa);
+		}
+		const bool stackClear = false; // the next scene will be added to the stack
+
+		// use the parameter that we set above to specify next scene
+		_implSceneChanged->onSceneChanged(eScene::Game, parameter, stackClear);
 	}
 
 	// go back to the title menu when 'Q' is pressed

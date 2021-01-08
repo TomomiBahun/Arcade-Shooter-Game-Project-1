@@ -29,28 +29,26 @@ Image::Image()
 	/* images player & Enemy icon*/
 	//myLoadDivGraph("../img/reimu.png", 6, 2, 3, 50, 50, _player); //  old image of Reimu. Delete when game is complete
 	myLoadDivGraph("../img/Reimudot.png", 15, 5, 3, 32, 49, _reimu);
+	myLoadDivGraph("../img/Marisadot.png", 15, 5, 3, 32, 49, _marisa);
 	myLoadDivGraph("../img/fire_blue.png", 4, 4, 1, 63, 50, _blueFire);
 	myLoadDivGraph("../img/fire_green.png", 4, 4, 1, 63, 50, _greenFire);
 	_yakumoRan = myLoadGraph("../img/YakumoRan.png");
 
 	/* images player& Enemy normal pic*/
 	_reimuNormal = myLoadGraph("../img/ReimuNormal.png");
-	_reimuNormalLayered = myLoadGraph("../img/ReimuNormalLayered.png");
 	_reimuAngry = myLoadGraph("../img/ReimuAngry.png");
-	_reimuAngryLayered = myLoadGraph("../img/ReimuAngryLayered.png");
 	_reimuSmile = myLoadGraph("../img/ReimuSmile.png");
-	_reimuSmileLayered = myLoadGraph("../img/ReimuSmileLayered.png");
 	_reimuCreepy = myLoadGraph("../img/ReimuCreepy.png");
-	_reimuCreepyLayered = myLoadGraph("../img/ReimuCreepyLayered.png");
 	_reimuConfused = myLoadGraph("../img/ReimuConfused.png");
 
 	_ranNormal = myLoadGraph("../img/RanNormal.png");
-	_ranNormalLayered = myLoadGraph("../img/RanNormalLayered.png");
 	_ranTired = myLoadGraph("../img/RanTired.png");
-	_ranTiredLayered = myLoadGraph("../img/RanTiredLayered.png");
 	_ranCrying = myLoadGraph("../img/RanCrying.png");
-	_ranCryingLayered = myLoadGraph("../img/RanCryingLayered.png");
 	_ranConfident = myLoadGraph("../img/RanConfident.png");
+
+	_marisaHappy = myLoadGraph("../img/MarisaHappy.png");
+	_marisaSmile = myLoadGraph("../img/MarisaSmile.png");
+	_marisaCreepy = myLoadGraph("../img/MarisaCreepy.png");
 
 	/* Decorative images*/
 	_hitBox = myLoadGraph("../img/hitBox.png");

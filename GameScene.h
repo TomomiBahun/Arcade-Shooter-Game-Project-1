@@ -1,15 +1,20 @@
 #pragma once
 #include "AbstractScene.h"
+#include "AbstractConversation.h"
 #include <memory>
 #include "Player.h"
 #include "GameBoard.h"
 #include "AbstractBackground.h"
 #include "EnemyManager.h"
 #include "YakumoRan.h"
-#include "Conversation.h"
+#include "S1ReimuConversation.h"
+#include "S1MarisaConversation.h"
 #include "SpellCardEffect.h"
-#include "EndConversation.h"
+#include "AbstractEndConversation.h"
+#include "S1ReimuEndConversation.h"
+#include "S1MarisaEndConversation.h"
 #include "Reimu.h"
+#include "Marisa.h"
 
 class GameScene : public AbstructScene
 {
@@ -37,8 +42,8 @@ private:
 	std::shared_ptr<AbstractBackground> _background;
 	std::shared_ptr<EnemyManager> _enemyManager;
 	std::shared_ptr<AbstractBoss> _boss;
-	std::shared_ptr<Conversation> _conversation;
-	std::shared_ptr<EndConversation> _endConversation;
+	std::shared_ptr<AbstractConversation> _conversation;
+	std::shared_ptr<AbstractEndConversation> _endConversation;
 	SpellCardEffect spellCardEffect;
 	int _currentCharacter = 0;
 

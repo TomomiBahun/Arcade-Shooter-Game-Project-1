@@ -1,21 +1,22 @@
 #pragma once
-#include "Task.h"
+#include "AbstractConversation.h"
 #include <vector>
 #include <string>
 
-class EndConversation : public Task
+class S1ReimuConversation : public AbstractConversation
 {
 public:
-	EndConversation();
-	virtual ~EndConversation() = default;
+	S1ReimuConversation();
+	virtual ~S1ReimuConversation() = default;
 	bool update() override;
 	void draw() const override;
-	int const getFlag() { return _flag; }
+	bool getBoss() { return _canBossCome; }
 
 private:
 	std::vector<const char*> reimuAndRan;
 	std::vector<std::vector<int>> imageReimuAndRan;
 	int _index;
 	int _counter;
-	bool _flag; // when the flag is true, the conversation is done
+	bool _canBossCome;
 };
+
