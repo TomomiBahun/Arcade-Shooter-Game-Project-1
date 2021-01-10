@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1.vcxproj", "{552E0651-2DFE-4823-BE29-D1FD7E19C1E5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Touhou_Tsuisoroku", "Project1.vcxproj", "{552E0651-2DFE-4823-BE29-D1FD7E19C1E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F690E8D7-6324-48C1-9DF9-BBA50B77AD1E}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Touhou Tsuisoroku", "..\Touhou Tsuisoroku\Touhou Tsuisoroku.vdproj", "{BF0F36EB-E9D2-467B-B63A-C991D3DA18DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,10 @@ Global
 		{552E0651-2DFE-4823-BE29-D1FD7E19C1E5}.Release|x64.Build.0 = Release|x64
 		{552E0651-2DFE-4823-BE29-D1FD7E19C1E5}.Release|x86.ActiveCfg = Release|Win32
 		{552E0651-2DFE-4823-BE29-D1FD7E19C1E5}.Release|x86.Build.0 = Release|Win32
+		{BF0F36EB-E9D2-467B-B63A-C991D3DA18DD}.Debug|x64.ActiveCfg = Debug
+		{BF0F36EB-E9D2-467B-B63A-C991D3DA18DD}.Debug|x86.ActiveCfg = Debug
+		{BF0F36EB-E9D2-467B-B63A-C991D3DA18DD}.Release|x64.ActiveCfg = Release
+		{BF0F36EB-E9D2-467B-B63A-C991D3DA18DD}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

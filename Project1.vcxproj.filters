@@ -326,6 +326,15 @@
     <ClInclude Include="CharacterMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Downloads\chinese_new_year_icon_177035.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+=======
     <ClInclude Include="Reimu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
