@@ -162,8 +162,10 @@
     <ClCompile Include="BlueFire.cpp" />
     <ClCompile Include="BossDefeatEffect.cpp" />
     <ClCompile Include="CharacterMenu.cpp" />
-    <ClCompile Include="Conversation.cpp" />
-    <ClCompile Include="EndConversation.cpp" />
+    <ClCompile Include="S1MarisaConversation.cpp" />
+    <ClCompile Include="S1MarisaEndConversation.cpp" />
+    <ClCompile Include="S1ReimuConversation.cpp" />
+    <ClCompile Include="S1ReimuEndConversation.cpp" />
     <ClCompile Include="EndStageEffect.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameBoard.cpp" />
@@ -174,6 +176,7 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageBullet.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Marisa.cpp" />
     <ClCompile Include="NullEffect.cpp" />
     <ClCompile Include="OptionScene.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -184,6 +187,7 @@
     <ClCompile Include="RanShot04.cpp" />
     <ClCompile Include="RanShot05.cpp" />
     <ClCompile Include="RanShot06.cpp" />
+    <ClCompile Include="Reimu.cpp" />
     <ClCompile Include="Round.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="Error.cpp" />
@@ -206,6 +210,8 @@
     <ClInclude Include="AbstractBackground.h" />
     <ClInclude Include="AbstractBoss.h" />
     <ClInclude Include="AbstractBossShot.h" />
+    <ClInclude Include="AbstractConversation.h" />
+    <ClInclude Include="AbstractEndConversation.h" />
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="AbstractShot.h" />
     <ClInclude Include="Background.h" />
@@ -213,8 +219,10 @@
     <ClInclude Include="BlueFire.h" />
     <ClInclude Include="BossDefeatEffect.h" />
     <ClInclude Include="CharacterMenu.h" />
-    <ClInclude Include="Conversation.h" />
-    <ClInclude Include="EndConversation.h" />
+    <ClInclude Include="S1MarisaConversation.h" />
+    <ClInclude Include="S1MarisaEndConversation.h" />
+    <ClInclude Include="S1ReimuConversation.h" />
+    <ClInclude Include="S1ReimuEndConversation.h" />
     <ClInclude Include="EndStageEffect.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameBoard.h" />
@@ -225,6 +233,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageBullet.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Marisa.h" />
     <ClInclude Include="NullEffect.h" />
     <ClInclude Include="OptionScene.h" />
     <ClInclude Include="Player.h" />
@@ -235,7 +244,7 @@
     <ClInclude Include="RanShot04.h" />
     <ClInclude Include="RanShot05.h" />
     <ClInclude Include="RanShot06.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Reimu.h" />
     <ClInclude Include="Round.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Error.h" />

@@ -29,9 +29,8 @@ public:
 		stageNum,
 	};
 
-	enum eLevel {
-		easy = 1,
-		normal,
-		levelNum,
+	enum eCharacter {
+		reimu = 1,
+		marisa,
 	};
 };

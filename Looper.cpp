@@ -62,6 +62,9 @@ void Looper::onSceneChanged(const eScene scene, const Parameter& parameter, cons
 	case Quit:
 		DxLib_End();
 		break;
+	case Back:
+		_sceneStack.pop();
+		break;
 	default:
 		ERR("Nonexistent scene was called");
 		break;

@@ -1,20 +1,26 @@
 #pragma once
 #include "AbstractScene.h"
+#include "AbstractConversation.h"
 #include <memory>
 #include "Player.h"
 #include "GameBoard.h"
 #include "AbstractBackground.h"
 #include "EnemyManager.h"
 #include "YakumoRan.h"
-#include "Conversation.h"
+#include "S1ReimuConversation.h"
+#include "S1MarisaConversation.h"
 #include "SpellCardEffect.h"
-#include "EndConversation.h"
+#include "AbstractEndConversation.h"
+#include "S1ReimuEndConversation.h"
+#include "S1MarisaEndConversation.h"
+#include "Reimu.h"
+#include "Marisa.h"
 
 class GameScene : public AbstructScene
 {
 public:
-	const static char* ParameterTagsStage;
-	const static char* ParameterTagLevel;
+	const static char* ParameterTagsStage; // used when specifying stage
+	const static char* ParameterTagCharacter; // used when specifying character
 
 	// constructor
 	GameScene(IOnSceneChangedListener* imply, const Parameter& parameter);
@@ -36,9 +42,10 @@ private:
 	std::shared_ptr<AbstractBackground> _background;
 	std::shared_ptr<EnemyManager> _enemyManager;
 	std::shared_ptr<AbstractBoss> _boss;
-	std::shared_ptr<Conversation> _conversation;
-	std::shared_ptr<EndConversation> _endConversation;
+	std::shared_ptr<AbstractConversation> _conversation;
+	std::shared_ptr<AbstractEndConversation> _endConversation;
 	SpellCardEffect spellCardEffect;
+	int _currentCharacter = 0;
 
 	void linkPlayerEnemy(); // pass player's location and power info to EnemyManager class
 	void linkPlayerBoss(); // pass player's location and power info to Boss class

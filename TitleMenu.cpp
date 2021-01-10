@@ -32,12 +32,9 @@ void TitleMenu::update()
 	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_NUMPADENTER) == 1) {
 		PlaySoundMem(Sound::getIns()->getProceed(), DX_PLAYTYPE_BACK);
 
-		// set the parameter (which level is it? should the stack be cleared?)
-		Parameter parameter;
-		parameter.set(GameScene::ParameterTagLevel, Define::eLevel::normal);
+		Parameter parameter; // no need to specify the parameter here
 		const bool stackClear = false; // the next scene will be added to the stack
 
-		// use the parameter that we set above to specify next scene
 		_implSceneChanged->onSceneChanged(choices.at(choiceAt), parameter, stackClear);
 	}
 

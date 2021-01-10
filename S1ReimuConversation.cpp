@@ -1,4 +1,4 @@
-#include "Conversation.h"
+#include "S1ReimuConversation.h"
 #include "Image.h"
 #include "Define.h"
 #include "keyboard.h"
@@ -7,8 +7,10 @@
 using namespace std;
 
 const static float SHRINK = 0.5;
+const static int BRIGHTNESS_MAX = 255;
+const static int BRIGHTNESS_MIN = 130;
 
-Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
+S1ReimuConversation::S1ReimuConversation() : _index(0), _counter(0), _canBossCome(false)
 {
 	reimuAndRan.push_back(""); // zero
 	reimuAndRan.push_back("Reimu: Too many ghosts! Where are they coming from?"); // first
@@ -22,13 +24,13 @@ Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
 
 	vector<int> zero = { NULL, NULL }; // dummy element. This won't be used.
 	vector<int> first = { Image::getIns()->getReimuAngry(), NULL };
-	vector<int> second = { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanNormal() };
-	vector<int> third = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };
-	vector<int> forth= { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanTired() };
-	vector<int> fifth = { Image::getIns()->getReimuAngry(), Image::getIns()->getRanTiredLayered() };
-	vector<int> sixth = { Image::getIns()->getReimuNormalLayered(), Image::getIns()->getRanNormal() };
-	vector<int> seventh = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormalLayered() };
-	vector<int> eighth = { Image::getIns()->getReimuAngryLayered(), Image::getIns()->getRanConfident() };
+	vector<int> second = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormal() };
+	vector<int> third = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormal() };
+	vector<int> forth= { Image::getIns()->getReimuNormal(), Image::getIns()->getRanTired() };
+	vector<int> fifth = { Image::getIns()->getReimuAngry(), Image::getIns()->getRanTired() };
+	vector<int> sixth = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormal() };
+	vector<int> seventh = { Image::getIns()->getReimuNormal(), Image::getIns()->getRanNormal() };
+	vector<int> eighth = { Image::getIns()->getReimuAngry(), Image::getIns()->getRanConfident() };
 	imageReimuAndRan.push_back(zero); // dummy element. This won't be used
 	imageReimuAndRan.push_back(first);
 	imageReimuAndRan.push_back(second);
@@ -40,7 +42,7 @@ Conversation::Conversation() : _index(0), _counter(0), _canBossCome(false)
 	imageReimuAndRan.push_back(eighth);
 }
 
-bool Conversation::update()
+bool S1ReimuConversation::update()
 {
 	_counter++;
 	// start the conversation without checking keyboard input first
@@ -56,11 +58,22 @@ bool Conversation::update()
 	return true; // if the conversation is still going, return true
 }
 
-void Conversation::draw() const
+void S1ReimuConversation::draw() const
 {
 	/* draw Characters*/
-	DrawRotaGraphF(Define::IN_X+100, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][0], TRUE);
-	DrawRotaGraphF(Define::INNER_W - 70, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][1], TRUE);
+	/* When index is even, Ran is speaking. When index is odd, Reimu is speaking */
+	if (_index % 2 == 0) { // When Ran is speaking, Reimu's image should be dimmed
+		SetDrawBright(BRIGHTNESS_MIN, BRIGHTNESS_MIN, BRIGHTNESS_MIN);
+		DrawRotaGraphF(Define::IN_X + 100, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][0], TRUE); // Reimu
+		SetDrawBright(BRIGHTNESS_MAX, BRIGHTNESS_MAX, BRIGHTNESS_MAX);
+		DrawRotaGraphF(Define::INNER_W - 70, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][1], TRUE); // Ran
+	}
+	else { // When Reimu is speaking, Ran's image should be dimmed
+		SetDrawBright(BRIGHTNESS_MIN, BRIGHTNESS_MIN, BRIGHTNESS_MIN);
+		DrawRotaGraphF(Define::INNER_W - 70, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][1], TRUE); // Ran
+		SetDrawBright(BRIGHTNESS_MAX, BRIGHTNESS_MAX, BRIGHTNESS_MAX);
+		DrawRotaGraphF(Define::IN_X + 100, Define::CENTER_Y + 200, SHRINK, 0, imageReimuAndRan[_index][0], TRUE); // Reimu
+	}
 
 	/* draw message box*/
 	DrawRotaGraphF(Define::CENTER_X, Define::CENTER_Y + 300, 1.0, 0, Image::getIns()->getMessagebox(), TRUE);
